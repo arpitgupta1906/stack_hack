@@ -15,6 +15,10 @@ const taskSchema=new mongoose.Schema({
         type:Boolean,
         default: false,
     },
+    notes:{
+        type:String,
+        trim: true,
+    },
     // dueDateTime:{
     //     type: Date,
     //     required:true,
@@ -24,11 +28,7 @@ const taskSchema=new mongoose.Schema({
     //     required: true,
     //     ref:'User'
     // },
-    labels:[{
-        label:{
-            type:String,
-        }
-    }]
+    labels:[String]
 },{
     timestamps:true
 })

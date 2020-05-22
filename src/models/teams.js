@@ -5,10 +5,31 @@ const teamSchema=new mongoose.Schema({
         type:String,
         required: true,
     },
-    members:{
-        member:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'User'
+    invitecode:{
+        type:Number
+    },
+    agenda:{
+        type:String,
+        default:""
+    },
+    tasks:[{
+        task:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Task'
         }
-    }
+    }],
+    creator:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
+    members:[{
+        member:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        }
+    }]
 })
+
+const Team=mongoose.model('Team',taskSchema)
+
+module.exports=Team;

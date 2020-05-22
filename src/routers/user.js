@@ -4,7 +4,7 @@ const auth=require('../middleware/auth')
 const multer=require('multer')
 const router=new express.Router()
 const sharp=require('sharp')
-
+const Task=require('../models/task')
 
 router.post('/users/signup',async (req,res)=>{
     const user=new User(req.body)
@@ -77,5 +77,47 @@ router.get('/users/profile', auth,async (req,res)=>{
 
 })
 
+router.patch('/users/update',auth,async(req,res)=>{
+    const updates=Object.keys(req.body);
+    const allowedupdates=['name','email','password'];
+    isValidUpdate=updates.every((update)=> allowedupdates.includes(update))
+
+    if(!isValidUpdate){
+        return res.status(400),send({error:'Invalid updates!'})
+    }
+
+    try{
+
+        const user=await User.findById(req.user)
+        // const user=req.user 
+
+        updates.forEach((update)=>{
+            user[update]=req.body[update]
+        })
+
+        await user.save()
+        // user=await User.findByIdAndUpdate(_id,req.body,{
+        //     new: true,runValidators:true
+        // })
+
+        res.send(user);
+    }
+    catch(e){
+        res.status(400).send(e);
+    }
+})
+
+// router.get('/users/freshstart',auth,async (req,res)=>{
+//     const user=await User.findById(req.user)
+
+//     try{
+//         await TextTrackList.deleteMany({owner: user._id})
+//         res.status(200).send()
+//     }
+//     catch(e){
+//         res.status(400).send(e);
+//     }
+
+// })
 
 module.exports=router;
