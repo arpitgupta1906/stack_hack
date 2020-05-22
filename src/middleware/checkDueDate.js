@@ -10,14 +10,14 @@ const checkDueDate=setInterval(()=>{
             // dueDateTime : { $gte: date}
         }).then(res=>{
             res.map((r)=>{
-                console.log(r,i);
+              r['overdue']=true;
+              r.save()  
+
+              console.log(r._id)
             })
-            // console.log(res);
         })
-    // console.log(tasks);
-    // if(tasks){
-    //     console.log(tasks[0]._id)
-    // }
+        
+
 
     return console.log('checking...');
 }, 3000);
