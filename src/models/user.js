@@ -70,21 +70,21 @@ userSchema.methods.generateAuthToken=async function(){
     return token
 }
 
-// userSchema.statics.findByCredentials=async (email,password)=>{
-//     const user=await User.findOne({ email })
+userSchema.statics.findByCredentials=async (email,password)=>{
+    const user=await User.findOne({ email })
 
-//     if(!user){
-//         throw new Error('Unable to login')
-//     }
+    if(!user){
+        throw new Error('Unable to login')
+    }
 
-//     isMatch=await bcrypt.compare(password,user.password)
+    isMatch=await bcrypt.compare(password,user.password)
     
-//     if(!isMatch){
-//         throw new Error('Unable to login')
-//     }
+    if(!isMatch){
+        throw new Error('Unable to login')
+    }
 
-//     return user
-// }
+    return user
+}
 
 userSchema.pre('save',async function(next){
     const user=this 
