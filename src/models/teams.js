@@ -8,6 +8,10 @@ const teamSchema=new mongoose.Schema({
     invitecode:{
         type:Number
     },
+    creator:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
     agenda:{
         type:String,
         default:""
@@ -18,10 +22,6 @@ const teamSchema=new mongoose.Schema({
             ref: 'Task'
         }
     }],
-    creator:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-    },
     members:[{
         member:{
             type: mongoose.Schema.Types.ObjectId,
