@@ -4,6 +4,7 @@ const teamSchema=new mongoose.Schema({
     name:{
         type:String,
         required: true,
+        unique: true
     },
     invitecode:{
         type:Number
@@ -22,8 +23,8 @@ const teamSchema=new mongoose.Schema({
     // }],
     members:[{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-    }]
+            ref: "User",
+    }],
 })
 
 teamSchema.virtual('tasks',{

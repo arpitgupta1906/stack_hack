@@ -33,6 +33,12 @@ const userSchema=new mongoose.Schema({
             }
         }
     },
+    teams:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref: 'Team'
+        }
+    ],
     tokens:[{
         token:{
             type:String,
