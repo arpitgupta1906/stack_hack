@@ -22,7 +22,7 @@ const checkDueDate=setInterval(()=>{
         
 
 
-    return console.log('checking...');
+    // return console.log('checking...');
 }, 3000);
 
 module.exports=checkDueDate;

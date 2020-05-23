@@ -17,16 +17,12 @@ const teamSchema=new mongoose.Schema({
         default:""
     },
     tasks:[{
-        task:{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Task'
-        }
     }],
     members:[{
-        member:{
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
-        }
     }]
 })
 

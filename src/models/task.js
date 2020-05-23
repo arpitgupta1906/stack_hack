@@ -36,6 +36,10 @@ const taskSchema=new mongoose.Schema({
     //     required: true,
     //     ref:'User'
     // },
+    // team:{
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     ref:'Team'
+    // },
     labels:{
         type:String,
         enum:['Personal', 'Work', 'Shopping','Others'],
