@@ -18,7 +18,7 @@ app.use(userRouter)
 app.use(taskRouter)
 
 
-// require('./middleware/checkDueDate')
+require('./middleware/checkDueDate')
 
 server.listen(PORT,()=>{
     console.log("server is up on port",PORT);

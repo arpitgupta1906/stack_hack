@@ -111,7 +111,7 @@ router.patch('/users/update',auth,async(req,res)=>{
 //     const user=await User.findById(req.user)
 
 //     try{
-//         await TextTrackList.deleteMany({owner: user._id})
+//         await Task.deleteMany({owner: user._id})
 //         res.status(200).send()
 //     }
 //     catch(e){

@@ -41,6 +41,7 @@ router.get('/tasks/:id',async (req,res)=>{
 
 
 //GET /tasks?completed=true
+//GET /tasks?label
 //GET /tasks?limit=2&skip=2
 //GET /tasks?sortBy=createdAt:desc
 //GET /tasks?completed=true  gives archived
