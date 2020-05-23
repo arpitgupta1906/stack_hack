@@ -3,10 +3,11 @@ const Task=require('../models/task')
 const router=new express.Router()
 const auth=require('../middleware/auth')
 
-router.post('/tasks/add',async (req,res)=>{
+router.post('/tasks/add', auth,async (req,res)=>{
     
     const task=new Task({
         ...req.body,
+        owner: req.user._id
     })
 
     try{
@@ -18,13 +19,13 @@ router.post('/tasks/add',async (req,res)=>{
     }
 })
 
-router.get('/tasks/:id',async (req,res)=>{
+router.get('/tasks/:id', auth,async (req,res)=>{
     const _id=req.params.id;
 
     try{
         
         const task=await Task.findOne({_id,
-            // owner:req.user._id
+            owner:req.user._id
         })
     
         if(!task){

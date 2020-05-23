@@ -31,15 +31,15 @@ const taskSchema=new mongoose.Schema({
         type: Date,
         required:true,
     },
-    // owner:{
-    //     type:mongoose.Schema.Types.ObjectId,
-    //     required: true,
-    //     ref:'User'
-    // },
-    // team:{
-    //     type:mongoose.Schema.Types.ObjectId,
-    //     ref:'Team'
-    // },
+    owner:{
+        type:mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref:'User'
+    },
+    team:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Team'
+    },
     labels:{
         type:String,
         enum:['Personal', 'Work', 'Shopping','Others'],
