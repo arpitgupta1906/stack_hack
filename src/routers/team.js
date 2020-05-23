@@ -4,7 +4,6 @@ const router=new express.Router()
 const auth=require('../middleware/auth')
 const Task=require('../models/task')
 
-//delete team task
 //send invite
 // leave team 
 
