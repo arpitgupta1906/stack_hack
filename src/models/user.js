@@ -33,6 +33,12 @@ const userSchema=new mongoose.Schema({
             }
         }
     },
+    teams:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref: 'Team'
+        }
+    ],
     tokens:[{
         token:{
             type:String,
@@ -44,11 +50,11 @@ const userSchema=new mongoose.Schema({
 })
 
 
-// userSchema.virtual('tasks',{
-//     ref:'Task',
-//     localField:'_id',
-//     foreignField:'owner'
-// })
+userSchema.virtual('tasks',{
+    ref:'Task',
+    localField:'_id',
+    foreignField:'owner'
+})
 
 // userSchema.methods.toJSON=function(){
 //     const user=this 

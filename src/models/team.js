@@ -4,6 +4,7 @@ const teamSchema=new mongoose.Schema({
     name:{
         type:String,
         required: true,
+        unique: true
     },
     invitecode:{
         type:Number
@@ -16,20 +17,22 @@ const teamSchema=new mongoose.Schema({
         type:String,
         default:""
     },
-    tasks:[{
-        task:{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Task'
-        }
-    }],
+    // tasks:[{
+    //         type: mongoose.Schema.Types.ObjectId,
+    //         ref: 'Task'
+    // }],
     members:[{
-        member:{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-        }
-    }]
+            ref: "User",
+    }],
 })
 
-const Team=mongoose.model('Team',taskSchema)
+teamSchema.virtual('tasks',{
+    ref:'Task',
+    localField:'_id',
+    foreignField:'team'
+})
+
+const Team=mongoose.model('Team',teamSchema)
 
 module.exports=Team;

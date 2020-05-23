@@ -1,25 +1,28 @@
 const Task=require('../models/task');
 
-const date=Date.now();
 
 const checkDueDate=setInterval(()=>{
     var tasks;
+    const date=new Date().toISOString()
+    
     Task.find({
             'completed': false,
              'overdue': false,
-            // dueDateTime : { $gte: date}
+            'dueDateTime' : { $lte: date}
         }).then(res=>{
             res.map((r)=>{
               r['overdue']=true;
               r.save()  
-
-              console.log(r._id)
+              
+              console.log(r.description)
             })
+        }).catch((e)=>{
+            console.log("None Due");
         })
         
 
 
-    return console.log('checking...');
+    // return console.log('checking...');
 }, 3000);
 
 module.exports=checkDueDate;

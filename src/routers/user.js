@@ -107,17 +107,17 @@ router.patch('/users/update',auth,async(req,res)=>{
     }
 })
 
-// router.get('/users/freshstart',auth,async (req,res)=>{
-//     const user=await User.findById(req.user)
+router.get('/users/freshstart',auth,async (req,res)=>{
+    const user=await User.findById(req.user)
 
-//     try{
-//         await TextTrackList.deleteMany({owner: user._id})
-//         res.status(200).send()
-//     }
-//     catch(e){
-//         res.status(400).send(e);
-//     }
+    try{
+        await Task.deleteMany({owner: user._id})
+        res.status(200).send()
+    }
+    catch(e){
+        res.status(400).send(e);
+    }
 
-// })
+})
 
 module.exports=router;

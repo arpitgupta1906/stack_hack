@@ -1,5 +1,4 @@
 const mongoose=require('mongoose');
-// const moment=require('moment');
 
 const taskSchema=new mongoose.Schema({
     description:{
@@ -19,16 +18,33 @@ const taskSchema=new mongoose.Schema({
         type:String,
         trim: true,
     },
-    // dueDateTime:{
-    //     type: Date,
-    //     required:true,
-    // },
-    // owner:{
-    //     type:mongoose.Schema.Types.ObjectId,
-    //     required: true,
-    //     ref:'User'
-    // },
-    labels:[String]
+    status:{
+        type:String,
+        enum:['New','InProgress','Completed'],
+        default:"New"
+    },
+    percentCompleted:{
+        type:Number,
+        default:0
+    },
+    dueDateTime:{
+        type: Date,
+        required:true,
+    },
+    owner:{
+        type:mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref:'User'
+    },
+    team:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Team'
+    },
+    labels:{
+        type:String,
+        enum:['Personal', 'Work', 'Shopping','Others'],
+        default:"Others",
+    }
 },{
     timestamps:true
 })
