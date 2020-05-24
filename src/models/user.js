@@ -33,6 +33,10 @@ const userSchema=new mongoose.Schema({
             }
         }
     },
+    resetcode:{
+        type: Number,
+        required:false
+    },
     teams:[
         {
             type:mongoose.Schema.Types.ObjectId,
