@@ -3,8 +3,10 @@ const Team=require('../models/team')
 const router=new express.Router()
 const auth=require('../middleware/auth')
 const Task=require('../models/task')
+const {authorization}=require('../emails/accounts')
+const nodemailer=require('nodemailer')
+const User=require('../models/user')
 
-//send invite
 // leave team 
 
 router.post('/createteam', auth, async (req,res)=>{
@@ -186,6 +188,49 @@ router.post('/searchteam', auth,async (req,res)=>{
         res.status(500).send();
     }
 
+})
+
+
+router.post('/team/:id/invite', auth,async (req,res)=>{
+    try{
+        const {email}=req.body
+        // console.log(email)
+
+        const team=await Team.findOne({_id:req.params.id})
+
+        if(!team){
+            return res.status(404).send();
+        }
+
+        const user=await User.findOne({email})
+        // console.log(user)
+        if(!user){
+            return res.status(404).send();
+        }
+
+        const transporter=nodemailer.createTransport(authorization);
+
+        const mailOptions={
+            from: 'gupta.arpit5694@gmail.com',
+            to: user.email,
+            subject:'Team Invite',
+            text: `Invite code for ${team.name} is ${team.invitecode}
+                Enter this code to join the team and collaborate`
+        }
+
+        transporter.sendMail(mailOptions, (error, info)=>{
+            if (error) {
+                console.log(error);
+            } else {
+            console.log('Email sent: ' + info.response);
+            }
+        });
+
+        res.status(200).send()
+    }
+    catch(e){
+        res.status(400).send(e);
+    }
 })
 
 router.patch('/team/:id/updateagenda', auth,async (req,res)=>{
