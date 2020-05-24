@@ -7,7 +7,6 @@ const {authorization}=require('../emails/accounts')
 const nodemailer=require('nodemailer')
 const User=require('../models/user')
 
-// leave team 
 
 router.post('/createteam', auth, async (req,res)=>{
     const user=req.user 

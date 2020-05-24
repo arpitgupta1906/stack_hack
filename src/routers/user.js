@@ -26,7 +26,6 @@ router.post('/users/signup',async (req,res)=>{
                 Get more done everyday`
         }
 
-        // console.log(transporter.sendMail)
 
         transporter.sendMail(mailOptions, (error, info)=>{
             if (error) {
