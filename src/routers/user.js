@@ -107,11 +107,22 @@ router.patch('/users/update',auth,async(req,res)=>{
     }
 })
 
+router.get('/users/teams', auth,async (req,res)=>{
+    try{
+        const teams=await req.user.populate("teams").execPopulate()
+        // console.log(teams.teams)
+        res.status(200).send(teams.teams)
+    }
+    catch(e){
+        res.status(400).send(e);
+    }
+})
+
 router.get('/users/freshstart',auth,async (req,res)=>{
     const user=await User.findById(req.user)
 
     try{
-        await Task.deleteMany({owner: user._id})
+        await Task.deleteMany({owner: user._id,team: undefined})
         res.status(200).send()
     }
     catch(e){
