@@ -5,11 +5,38 @@ const multer=require('multer')
 const router=new express.Router()
 const sharp=require('sharp')
 const Task=require('../models/task')
+const {authorization}=require('../emails/accounts')
+const nodemailer=require('nodemailer')
+
+
 
 router.post('/users/signup',async (req,res)=>{
     const user=new User(req.body)
 
     try{
+        
+
+        const transporter=nodemailer.createTransport(authorization);
+
+        const mailOptions={
+            from: 'gupta.arpit5694@gmail.com',
+            to: user.email,
+            subject:'Welcome Message',
+            text: `Welcome ${user.name}
+                Get more done everyday`
+        }
+
+        // console.log(transporter.sendMail)
+
+        transporter.sendMail(mailOptions, (error, info)=>{
+            if (error) {
+                console.log(error);
+            //    return res.status(404).send()
+            } else {
+            console.log('Email sent: ' + info.response);
+            }
+        });
+
         await user.save()
         const token=await user.generateAuthToken()
 
@@ -75,6 +102,65 @@ router.get('/users/profile', auth,async (req,res)=>{
 
     res.send(req.user)
 
+})
+
+router.patch('/resetpassword', async(req,res)=>{
+    const {email}=req.body;
+
+    try{
+        const user=await User.findOne({email});
+
+        if(!user){
+            res.status(404).send()
+        }
+        const transporter=nodemailer.createTransport(authorization);
+
+        user.resetcode=Math.floor(Math.random()*100000);
+        // console.log(user)
+        await user.save();
+
+        const mailOptions={
+            from: 'gupta.arpit5694@gmail.com',
+            to: user.email,
+            subject:'Reset Password',
+            text: `Your password reset code is: ${user.resetcode}`
+        }
+
+        transporter.sendMail(mailOptions, (error, info)=>{
+            if (error) {
+                console.log(error);
+            //    return res.status(404).send()
+            } else {
+            console.log('Email sent: ' + info.response);
+            }
+        });
+
+        res.status(200).send(user);
+    }
+    catch(e){
+        res.status(400).send(e);
+    }
+})
+
+router.post('/resetcode/:id',async (req,res)=>{
+    const {resetcode,password}=req.body;
+    const id=req.params.id
+    
+    try{
+        const user=await User.findOne({_id:id,resetcode:resetcode})
+        if(!user){
+            return res.status(404).send()
+        }
+        
+        user['password']=password
+        // res.status(200).send(user)
+        delete user.resetcode
+        await user.save()
+        return res.status(200).send(user);
+    }
+    catch(e){
+        res.status(400).send()
+    }
 })
 
 router.patch('/users/update',auth,async(req,res)=>{
