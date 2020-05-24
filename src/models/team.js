@@ -21,10 +21,14 @@ const teamSchema=new mongoose.Schema({
     //         type: mongoose.Schema.Types.ObjectId,
     //         ref: 'Task'
     // }],
-    members:[{
+    members:[
+        {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
-    }],
+        },
+    ],
+},{
+    timestamps:true
 })
 
 teamSchema.virtual('tasks',{
