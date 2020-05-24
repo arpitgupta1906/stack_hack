@@ -204,6 +204,7 @@ router.get('/users/teams', auth,async (req,res)=>{
     }
 })
 
+
 router.get('/users/freshstart',auth,async (req,res)=>{
     const user=await User.findById(req.user)
 
