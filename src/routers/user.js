@@ -26,7 +26,6 @@ router.post('/users/signup',async (req,res)=>{
                 Get more done everyday`
         }
 
-        // console.log(transporter.sendMail)
 
         transporter.sendMail(mailOptions, (error, info)=>{
             if (error) {
@@ -203,6 +202,7 @@ router.get('/users/teams', auth,async (req,res)=>{
         res.status(400).send(e);
     }
 })
+
 
 router.get('/users/freshstart',auth,async (req,res)=>{
     const user=await User.findById(req.user)

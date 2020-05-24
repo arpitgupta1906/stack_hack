@@ -7,7 +7,6 @@ const {authorization}=require('../emails/accounts')
 const nodemailer=require('nodemailer')
 const User=require('../models/user')
 
-// leave team 
 
 router.post('/createteam', auth, async (req,res)=>{
     const user=req.user 
@@ -273,5 +272,43 @@ router.patch('/team/:id/changeinvite', auth,async (req,res)=>{
     }
 })
 
+
+router.get('/team/:id/leaveteam', auth,async (req,res)=>{
+    const user=req.user;
+    const id=req.params.id 
+
+    const team=await Team.findOne({_id:id})
+
+    if(!team){
+        return res.status(404).send()
+    }
+
+    const members=[]
+
+    for(let i=0;i<team.members.length;i++){
+        s=team.members[i].toString();
+        if(s.localeCompare(req.user._id)){
+            members.push(team.members[i])
+        }
+    }
+
+    const userteams=[]
+
+    for(let i=0;i<user.teams.length;i++){
+        s=user.teams[i].toString();
+        if(s.localeCompare(team._id)){
+            userteams.push(user.teams[i])
+        }
+    }
+
+    user.teams=userteams;
+    await user.save()
+
+    team.members=members
+    await team.save()
+
+    res.status(200).send()
+
+})
 
 module.exports=router;
