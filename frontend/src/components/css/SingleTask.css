@@ -1,0 +1,64 @@
+li{
+    color: black;
+}
+
+.singletask{
+    width: 70%;
+    padding: 1%;
+    /* background-color: grey; */
+    /* height: ; */
+}
+
+.task-a{
+    color: white;
+}
+
+/* .content{
+    position: relative;
+    top: 39px;
+} */
+
+.completed{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    padding: 1%;
+    background-color: turquoise;
+    text-align: right;
+    border-radius: 35%;
+}
+
+.labels{
+    position: absolute;
+    top: 5%;
+    right: 25%;
+    padding: 1%;
+    background-color: yellowgreen;
+    text-align: right;
+    border-radius: 35%;
+}
+
+.overdue{
+    position: absolute;
+    top: 30%;
+    right: 5%;
+    padding: 1%;
+    background-color: red;
+    text-align: right;
+    border-radius: 35%;
+}
+
+button{
+    margin-right: 10px;
+}
+
+.duedate{
+    position: relative;
+    top: 5%;
+    left: 2%;
+    background-color: yellow;
+    border-radius: 50%;
+    text-align: center;
+    width: 30%;
+    
+}

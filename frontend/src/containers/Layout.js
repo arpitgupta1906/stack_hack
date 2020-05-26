@@ -29,13 +29,13 @@ class Layout extends Component {
                     <li className="nav-item">
                     <a className="nav-link" href="#">Link</a>
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item ">
                     <a className="nav-link disabled" href="#">Disabled</a>
                     </li>
                 </ul>
 
-                <ul class="navbar-nav navbar-right">
-                    <li className="nav-item text-nowrap">
+                <ul class="navbar-nav navbar-right please">
+                    <li className="nav-item please text-nowrap">
                     <a className="nav-link" href="#">Logout</a>
                     </li>
                 </ul>
@@ -58,8 +58,7 @@ class Layout extends Component {
                 
                 <div className="app-header">
                    {this.props.children}
-                    <p> HI I am alright I guess keep typing keep typing
-                    </p>
+                   
                 </div>
                  </div>
             </div>
