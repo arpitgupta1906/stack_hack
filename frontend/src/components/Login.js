@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Login.css'
+import './css/Login.css'
 
 class Login extends Component {
 
@@ -35,6 +35,9 @@ class Login extends Component {
             <div class="form-group">
                 <label for="pwd">Password:</label>
                 <input name='password' type="password" class="form-control" placeholder="Enter password" id="pwd" />
+            </div>
+            <div className="form-group">
+            <a href="#"> Sign Up?</a>
             </div>
             
             <button type="submit" class="btn btn-primary">Submit</button>
