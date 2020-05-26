@@ -7,7 +7,7 @@ class Layout extends Component {
     constructor(props) {
         super(props);
         this.state={
-            isAuthenticated: false
+            isAuthenticated: true
         }
 
         console.log(this.state.isAuthenticated)
@@ -18,7 +18,7 @@ class Layout extends Component {
     render() {
         return (
             <div>
-                <nav className="navbar navbar-expand-sm bg-light fixed-top">
+                <nav className="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
                 <ul className="navbar-nav">
                     <li className="nav-item active">
                     <a className="navbar-brand" href="#">Active</a>
