@@ -1,0 +1,14 @@
+button{
+    margin-top: 20px;
+}
+
+.members{
+    text-align: center;
+    margin-top: 20px;
+    border-color: green;
+    border-width: 5px;
+    border-style: solid;
+    width: inherit;
+    /* background-color: grey; */
+    color: white;
+}

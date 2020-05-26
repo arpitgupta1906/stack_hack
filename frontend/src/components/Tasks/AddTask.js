@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import '../css/AddTask.css'
 
+
+////for team input,send team="team name as input" and id=team id
+
+
 class AddTask extends Component {
 
     handleSubmit=(event)=>{
@@ -15,10 +19,22 @@ class AddTask extends Component {
     }
 
     render() {
+        const {team}=this.props;
+        console.log(team)
         return (
             <div className="task">
                 <form onSubmit={this.handleSubmit}>
                 <header><p>Add Task</p></header>
+                {
+                    team.length>0?
+
+                <div class="form-group">
+                    <label for="team">Team:</label>
+                    <input type="name"   class="form-control" value={team} id="team" readOnly />
+                </div>
+                    :
+                    ""
+                }
                 <div class="form-group">
                     <label for="description">Description:</label>
                     <input name="description" class="form-control" placeholder="Task Description" id="description" />

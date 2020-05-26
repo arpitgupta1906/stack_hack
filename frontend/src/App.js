@@ -7,12 +7,16 @@ import Layout from './containers/Layout';
 // import UpdateProfile from './components/Users/UpdateProfile';
 import TasksList from './containers/TasksList';
 import AddTask from './components/Tasks/AddTask';
+// import EditTask from './components/Tasks/EditTask';
+// import CreateTeam from './components/Teams/CreateTeam';
+import TeamProfile from './components/Teams/TeamProfile';
 
 function App() {
   return (
     <div className="App">
       <Layout>
-        <AddTask />
+      <TeamProfile />
+        {/* <AddTask team="" id="" /> */}
         {/* <TasksList /> */}
       </Layout>
     </div>
