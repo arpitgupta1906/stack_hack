@@ -9,13 +9,14 @@ import TasksList from './containers/TasksList';
 import AddTask from './components/Tasks/AddTask';
 // import EditTask from './components/Tasks/EditTask';
 // import CreateTeam from './components/Teams/CreateTeam';
-import TeamProfile from './components/Teams/TeamProfile';
+// import TeamProfile from './components/Teams/TeamProfile';
+import TeamBoard from './containers/TeamBoard';
 
 function App() {
   return (
     <div className="App">
       <Layout>
-      <TeamProfile />
+      <TeamBoard />
         {/* <AddTask team="" id="" /> */}
         {/* <TasksList /> */}
       </Layout>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../css/AddTask.css'
 
 class JoinTeam extends Component {
 
