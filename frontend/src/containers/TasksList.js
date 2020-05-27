@@ -1,70 +1,45 @@
 import React, { Component } from 'react';
 import SingleTask from '../components/Tasks/SingleTask';
+import '../components/css/TeamBoard.css';
+import axios from 'axios';
 
 class TasksList extends Component {
     constructor(props) {
         super(props);
         this.state={
-            tasks:[
-                {
-                    description:"Do this, Do that",
-                    dueDateTime:"not accomplished this yet",
-                    percentCompleted:80,
-                    team:"Major lazer",
-                    labels:"others",
-                    completed:"completed",
-                    notes:"I really want this to work",
-                    overdue:"overdue"
-                },
-                {
-                    description:"Do this, Do that",
-                    dueDateTime:"not accomplished this yet",
-                    percentCompleted:"10",
-                    team:"Major lazer",
-                    labels:"others",
-                    completed:"completed",
-                    notes:"I really want this to work",
-                    overdue:""
-                },
-                {
-                    description:"Do this, Do thatj;kdl; dijd 9d d d d d d d  d d d  dfdsd s f s d sd d sd s f s fs fs fs s  sf fs d d d d d  d d d d d d d d d dd d dd",
-                    dueDateTime:"not accomplished this yet",
-                    percentCompleted:"10",
-                    team:"Major lazer",
-                    labels:"others",
-                    completed:"completed",
-                    notes:"I really want this to work",
-                    overdue:"overdue"
-                },
-                {
-                    description:"Do this, Do that",
-                    dueDateTime:"not accomplished this yet",
-                    percentCompleted:"10",
-                    team:"Major lazer",
-                    labels:"others",
-                    completed:"completed",
-                    notes:"I really want this to work",
-                    overdue:"overdue"
-                },
-                {
-                    description:"Do this, Do that",
-                    dueDateTime:"not accomplished this yet",
-                    percentCompleted:"10",
-                    team:"Major lazer",
-                    labels:"others",
-                    completed:"completed",
-                    notes:"I really want this to work",
-                    overdue:"overdue"
-                },
-            ],
+            tasks:[],
+            isAuthenticated: false
         }
     }
 
+    componentDidMount(){
+        let token=localStorage.getItem('token');
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+        if(token){
+
+            this.setState({
+                isAuthenticated: true
+            })
+            axios.get('http://localhost:3000/tasks?sortBy=createdAt:desc',
+            config
+            ).then((res)=>{
+                this.setState({
+                    tasks:res.data
+                })
+                // console.log(res.data)
+            }).catch((error)=>{
+                console.log(error)
+            })
+
+        }
+    }
     
     render() {
         const {tasks}=this.state 
 
-        console.log(tasks)
+        // console.log(tasks)
         const tasklist=tasks.map((task)=>{
             return (
                 <div>
@@ -74,6 +49,9 @@ class TasksList extends Component {
         })
         return (
             <div>
+             <button type="button"  class="btn btn-primary add-task">
+                <a className="task-a" href="#">Add Task</a>
+            </button>
             <ul className="list-group">
                 {tasklist}
             </ul>

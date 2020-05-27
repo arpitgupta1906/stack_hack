@@ -169,7 +169,13 @@ router.patch('/tasks/:id', auth,async (req,res)=>{
 
         updates.forEach((update)=>{
             task[update]=req.body[update]
+            task['overdue']=false;
+            task['status']='Completed'
         })
+
+        if(task['percentCompleted']>99){
+            task['completed']=true;
+        }
 
         await task.save()
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/UpdateProfile.css'
+import axios from 'axios';
 
 class UpdateProfile extends Component {
     constructor(props) {
@@ -34,37 +35,37 @@ class UpdateProfile extends Component {
 
         console.log(name);
 
-        // if(this.validateForm(this.state.errors) && (password===password2 || password.length===0)){
-        //     let data={}
-        //     if(password.length>0){
-        //         data['password']=password
-        //     }
-        //     data['name']=name
+        if(this.validateForm(this.state.errors) && (password===password2 || password.length===0)){
+            let data={}
+            if(password.length>0){
+                data['password']=password
+            }
+            data['name']=name
             
-        //     let token=localStorage.getItem('token');
-        //     const config = {
-        //         headers: { Authorization: `Bearer ${token}` }
-        //     };
-        //     axios.patch('http://localhost:8080/users/update/',
-        //     data,
-        //     config
-        //     ).then((res)=>{
-        //         this.props.history.push('/')
-        //         // console.log(res.data)
-        //         this.forceUpdate();
-        //     }).catch((error)=>{
-        //         console.log(error)
-        //     })
-        //     console.log(data);
-        // }
-        // else{
-        //     let errors=this.state.errors;
-        //     errors.password='The two passwords do not match';
-        //     this.setState({
-        //         errors
-        //     });
-        //     console.log('Invalid form')
-        // }
+            let token=localStorage.getItem('token');
+            const config = {
+                headers: { Authorization: `Bearer ${token}` }
+            };
+            axios.patch('http://localhost:3000/users/update/',
+            data,
+            config
+            ).then((res)=>{
+                // this.props.history.push('/')
+                console.log(res.data)
+                this.forceUpdate();
+            }).catch((error)=>{
+                console.log(error)
+            })
+            // console.log(data);
+        }
+        else{
+            let errors=this.state.errors;
+            errors.password='The two passwords do not match';
+            this.setState({
+                errors
+            });
+            console.log('Invalid form')
+        }
     }
 
 
