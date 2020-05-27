@@ -100,7 +100,39 @@ router.post('/users/logoutAll',auth,async (req,res)=>{
 
 router.get('/users/profile', auth,async (req,res)=>{
 
-    res.send(req.user)
+    let user=req.user;
+
+    // const sort={}
+    // const match={}
+    // sort['completed']=1
+    // match['completed']=true;
+
+    // try{
+    //     // const task=await Task.find({owner:req.user._id});
+    //     await req.user.populate({
+    //         path: 'tasks',
+    //         match,
+    //         options:{
+    //             limit: parseInt(req.query.limit),
+    //             skip: parseInt(req.query.skip),
+    //             sort
+    //         }
+    //     }).execPopulate()
+    //     user['completedTasks']=req.user.tasks.length;
+    //     user['hello']="what the fuck";
+    //     console.log({
+    //         user
+    //     })
+    //     // const task=req.user.tasks
+    //     // const d=task.length
+    //     res.status(200).send(user,
+    //         user['completedTasks']:req.user.tasks.length);
+    // }
+    // catch(error){
+    //     res.status(500).send(error);
+    // }
+
+    res.send(user)
 
 })
 
