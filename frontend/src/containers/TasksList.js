@@ -22,7 +22,7 @@ class TasksList extends Component {
             this.setState({
                 isAuthenticated: true
             })
-            axios.get('http://localhost:3000/tasks?sortBy=createdAt:desc',
+            axios.get('http://localhost:3000/tasks?sortBy=completed:asc',
             config
             ).then((res)=>{
                 this.setState({

@@ -25,7 +25,16 @@ class EditTask extends Component {
             config
             ).then((res)=>{
                 this.setState({
-                    tasks:res.data
+                    task:res.data
+                })
+
+                const d=this.state.duedatetime;
+                d=new Date(d);
+
+                this.setState({
+                    task:{
+                        duedatetime:d
+                    }
                 })
                 // console.log(res.data)
             }).catch((error)=>{
@@ -48,7 +57,7 @@ class EditTask extends Component {
         data['description']=description;
         data['notes']=notes;
         data['labels']=labels;
-        data['duedatetime']=duedatetime;
+        data['dueDateTime']=duedatetime.toUTCString();
         data['percentCompleted']=percentCompleted;
 
         let token=localStorage.getItem('token');

@@ -6,40 +6,34 @@ class UserProfile extends Component {
     constructor(props) {
         super(props);
         this.state={
-            user:{
-                email:"gupta.25@iitj.ac.in",
-                name:"I am the world",
-                tasksCompleted: 20,
-                taskIncomplete: 10,
-                numberOfTeams: 3
-            }
+            user:{}
         }
     }
     
-    // componentDidMount(){
-    //     let token=localStorage.getItem('token');
+    componentDidMount(){
+        let token=localStorage.getItem('token');
         
-    //     const config = {
-    //         headers: { Authorization: `Bearer ${token}` }
-    //     };
-    //     if(token){
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+        if(token){
 
-    //         this.setState({
-    //             isAuthenticated: true
-    //         })
-    //         axios.get('http://localhost:8080/users/me/',
-    //         config
-    //         ).then((res)=>{
-    //             this.setState({
-    //                 user:res.data
-    //             })
-    //             // console.log(res.data)
-    //         }).catch((error)=>{
-    //             console.log(error)
-    //         })
+            this.setState({
+                isAuthenticated: true
+            })
+            axios.get('http://localhost:8080/users/profile/',
+            config
+            ).then((res)=>{
+                this.setState({
+                    user:res.data
+                })
+                // console.log(res.data)
+            }).catch((error)=>{
+                console.log(error)
+            })
 
-    //     }
-    // }
+        }
+    }
 
     render() {
         return (
@@ -52,8 +46,8 @@ class UserProfile extends Component {
                 <h1>{this.state.user.name}</h1>
                 <p class="title">Active Member</p>
                 <p>Tasks Completed: {this.state.user.tasksCompleted}</p>
-                <p>Tasks InComplete: {this.state.user.taskIncomplete}</p>
-                <p>Number of Teams: {this.state.user.numberOfTeams}</p>
+                {/* <p>Tasks InComplete: {this.state.user.taskIncomplete}</p>
+                <p>Number of Teams: {this.state.user.numberOfTeams}</p> */}
                 <p><button>{this.state.user.email}</button></p>
                 </div>
             </div>
