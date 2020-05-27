@@ -42,7 +42,8 @@ router.post('/jointeam', auth,async (req,res)=>{
             }
             
             if(team.invitecode!==invitecode){
-                return res.status(401).send()
+                // console.log('sad reacts')
+                return res.status(401).send({error:'Wrong Invite Code'})
             }
 
             for(let i=0;i<team.members.length;i++){

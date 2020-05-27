@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import '../css/AddTask.css'
 import '../css/TeamProfile.css';
+import axios from 'axios';
 
 class TeamProfile extends Component {
     constructor(props) {
         super(props);
         
         this.state={
+
             team:{
                 name:"this is the one",
                 agenda:"please work",
@@ -19,21 +21,96 @@ class TeamProfile extends Component {
             }
         }
     }
+
+    componentDidMount(){
+        const _ID=this.props.match.params.ID;
+        
+         let token=localStorage.getItem('token');
+         const config = {
+             headers: { Authorization: `Bearer ${token}` }
+         };
+         
+ 
+         axios.get(`http://localhost:3000/team/${_ID}`,
+         config).then((res)=>{
+
+            this.setState({
+                team:res.data
+            }) 
+             this.forceUpdate();
+         }).catch((error)=>{
+             console.log(error)
+         })
+
+         
+
+             axios.get(`http://localhost:3000/team/${_ID}/members`,config).
+             then((res)=>{
+                 this.setState({
+                     members:res
+                 })
+             }).catch((e)=>{
+                 console.log(e);
+             })
+         
+    }
+
+    handleSubmit=(event)=>{
+        const agenda=event.target.agenda.value;
+
+        const _ID=this.props.match.params.ID;
+        
+         let token=localStorage.getItem('token');
+         const config = {
+             headers: { Authorization: `Bearer ${token}` }
+         };
+         
+ 
+         axios.patch(`http://localhost:3000/team/${_ID}/updateagenda`,
+         {
+             agenda
+         },
+         config).then((res)=>{             
+             console.log(res.data)
+             this.forceUpdate();
+         }).catch((error)=>{
+             console.log(error)
+         })
+    }
+
+    handleInvite=(event)=>{
+         const _ID=this.props.match.params.ID;
+        
+         let token=localStorage.getItem('token');
+         const config = {
+             headers: { Authorization: `Bearer ${token}` }
+         };
+         
+ 
+         axios.patch(`http://localhost:3000/team/${_ID}/changeinvite`,
+         {},
+         config).then((res)=>{             
+             console.log(res.data.invitecode)
+             this.forceUpdate();
+         }).catch((error)=>{
+             console.log(error)
+         })
+    }
     
     render() {
 
-        const {team}=this.state
-        const memberlist=team.members.map((member)=>{
+        const {team,members}=this.state
+        const memberlist=members.map((member)=>{
             return <div>
 
-            <p>{member}</p>
+            <p>{member.name}</p>
             </div>
         })
 
         return (
             <div className="task">
                 <form onSubmit={this.handleSubmit}>
-                <header><p>Create Team</p></header>
+                <header><p>Team Profile</p></header>
 
                 <div class="form-group">
                     <label for="name">Team Name:</label>
@@ -52,7 +129,7 @@ class TeamProfile extends Component {
                 
                 <button type="submit" class="btn btn-primary">Update Agenda</button>
                 </form>
-                <button type="submit" class="btn btn-warning">Change Invite Code</button>
+                <button type="submit" onClick={this.handleInvite} class="btn btn-warning">Change Invite Code</button>
                 <br />
                 <br />
                 <h3>Team Members:</h3>

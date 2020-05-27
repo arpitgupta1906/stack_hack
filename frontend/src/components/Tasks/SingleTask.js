@@ -91,7 +91,7 @@ class SingleTask extends Component {
         return (
             <div className="singletask">
             <li className="list-group-item">
-                <p> <span className="test1"><Moment format="ddd MMMM-YY HH:mm a">{task.dueDateTime}</Moment></span> <span className="test2">{task.labels}</span>
+                <p> <span className="test1"><Moment format="D-ddd MMMM-YY HH:mm a">{task.dueDateTime}</Moment></span> <span className="test2">{task.labels}</span>
                 {
                     task.completed?
                 <span className="test3">
@@ -104,12 +104,11 @@ class SingleTask extends Component {
                 }
                 
                 {
-                    task.overdue.length>0? 
-                <span className="test4">{task.overdue}</span>
+                    task.overdue? 
+                <span className="test4">Overdue</span>
                 : ""
                 }
                  </p>
-
                 <p className="content">{task.description}</p>
                 <p className="content">{task.notes}</p>
                 {
@@ -117,6 +116,7 @@ class SingleTask extends Component {
                 <p className="content">Team:{task.teamname}</p>
                 :""
                 }
+                {/* <p> {task.overdue}</p> */}
                 <p>
                     
                 <label for="customRange3">Percentage Completed:</label>

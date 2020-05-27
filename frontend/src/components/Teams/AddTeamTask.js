@@ -6,7 +6,7 @@ import axios from 'axios';
 ////for team input,send team="team name as input" and id=team id
 
 
-class AddTask extends Component {
+class AddTeamTask extends Component {
 
     constructor(props) {
         super(props);
@@ -31,31 +31,50 @@ class AddTask extends Component {
             headers: { Authorization: `Bearer ${token}` }
         };
 
+        const _ID=this.props.match.params.ID;
         try{
 
-            const tasks=await axios.post('http://localhost:3000/tasks/add',{
+            const task=await axios.post('http://localhost:3000/team/${_ID}/task',{
                 description,
                 notes,
                 labels,
                 dueDateTime:duedatetime,
                 percentCompleted
             }, config)
+            console.log(task)
         }
         catch(e){
             console.log(e);
         }
 
-        // console.log(percentCompleted);
+        console.log(percentCompleted);
     }
 
     render() {
-        // const {team}=this.props;
-    
+
+        let team;
+
+        const _ID=this.props.match.params.ID;
+        
+        let token=localStorage.getItem('token');
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+        
+
+        axios.get(`http://localhost:3000/team/${_ID}`,
+        config).then((res)=>{
+          team=res.data.name
+        }).catch((error)=>{
+            console.log(error)
+        })
+
+        console.log(team)
         return (
             <div className="task">
                 <form onSubmit={this.handleSubmit}>
                 <header><p>Add Task</p></header>
-                {/* {
+                {
                     team.length>0?
 
                 <div class="form-group">
@@ -64,7 +83,7 @@ class AddTask extends Component {
                 </div>
                     :
                     ""
-                } */}
+                }
                 <div class="form-group">
                     <label for="description">Description:</label>
                     <input name="description" class="form-control" placeholder="Task Description" id="description" />
@@ -101,4 +120,4 @@ class AddTask extends Component {
     }
 }
 
-export default AddTask;
+export default AddTeamTask;

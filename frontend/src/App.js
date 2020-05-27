@@ -8,20 +8,23 @@ import UpdateProfile from './components/Users/UpdateProfile';
 import TasksList from './containers/TasksList';
 import AddTask from './components/Tasks/AddTask';
 import EditTask from './components/Tasks/EditTask';
-// import CreateTeam from './components/Teams/CreateTeam';
-// import TeamProfile from './components/Teams/TeamProfile';
+import CreateTeam from './components/Teams/CreateTeam';
+import TeamProfile from './components/Teams/TeamProfile';
 import TeamBoard from './containers/TeamBoard';
 import ResetProfile from './components/Users/ResetProfile';
+// import Invite from './components/Teams/Invite';
+
+import JoinTeam from './components/Teams/JoinTeam';
 
 function App() {
   return (
     <div className="App">
       <Layout>
       {/* <AddTask team=""/> */}
-    {/* <EditTask/> */}
-    <ResetProfile />
+    {/* <TeamProfile /> */}
+    {/* <ResetProfile /> */}
         {/* <AddTask team="" id="" /> */}
-        {/* <TasksList /> */}
+        <TasksList />
       </Layout>
     </div>
   );
@@ -37,3 +40,8 @@ export default App;
 //tasklist
 //updateprofile
 //add task
+//join team
+// password reset
+//create team
+//add member
+//team profile
