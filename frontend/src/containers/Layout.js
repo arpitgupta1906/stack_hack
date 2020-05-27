@@ -48,22 +48,26 @@ class Layout extends Component {
                     <div className="sidebar-header">
                         All Tasks
                     </div>
+                    <a href="#">+Add Task</a>
                     <a href="#">Personal</a>
                     <a href="#">Work</a>
                     <a href="#">Shopping</a>
                     <a href="#">Others</a>
-                    <a href="#">+Add Task</a>
+                    <div className="sidebar-header">
+                    <a href="#">Archived</a>
+                    </div>
                     <a href="#">Join Team</a>
+                    <a href="#">+ Team</a>
                     <div className="sidebar-header">
                         Teams
                     </div>
                     <a href="#">Team1</a>
-                    <div className="sidebar-header">
-                    <a href="#">
-                       + Team
-
-                    </a>
-                    </div>
+                    <a href="#">Team2</a>
+                    <a href="#">Team1</a>
+                    <a href="#">Team1</a>
+                    <a href="#">Team1</a>
+                    <a href="#">Team1</a>
+                    <a href="#">Team1</a>
                 </div>
                     :
                     ""

@@ -108,6 +108,24 @@ router.get('/team/:id/members', auth,async (req,res)=>{
     }
 })
 
+router.get('/team/:id', auth,async (req,res)=>{
+    try{
+
+        const team=await Team.findOne({_id:req.params.id})
+    
+        if(!team){
+            return res.status(404).send()
+        }
+
+        res.status(200).send(team);
+    }
+    catch(e){
+        res.status(400).send(e);
+    }
+
+    
+})
+
 
 router.get('/team/:id/tasks', auth,async (req,res)=>{
 

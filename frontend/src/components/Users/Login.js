@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/Login.css'
+import axios from 'axios';
 
 class Login extends Component {
 
@@ -9,17 +10,18 @@ class Login extends Component {
         const email=event.target.elements.email.value;
         console.log(email)
 
-        // axios.post('http://localhost:8080/users/login/',{
-        //     email: email,
-        //     password: password
-        // }).then(res=>{
-        //     // console.log(res.data.token)
-        //     localStorage.setItem('token',res.data.token)
-        //     localStorage.setItem('user',JSON.stringify(res.data.user))
-        //     this.props.history.push('/')
-        //     // console.log(localStorage.getItem('token'))
-        // })
-        // .catch(error=>console.error(error));
+        axios.post('http://localhost:3000/users/login/',{
+            email: email,
+            password: password
+        }).then(res=>{
+            console.log(res.data.token)
+            console.log(res.data.user)
+            localStorage.setItem('token',res.data.token)
+            localStorage.setItem('user',JSON.stringify(res.data.user))
+            // this.props.history.push('/')
+            // console.log(localStorage.getItem('token'))
+        })
+        .catch(error=>console.error(error));
 
         
     }

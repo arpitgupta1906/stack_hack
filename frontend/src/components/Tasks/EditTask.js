@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/AddTask.css'
+import axios from 'axios';
 
 class EditTask extends Component {
 
@@ -7,32 +8,83 @@ class EditTask extends Component {
         super(props);
         
         this.state={
-            task:{
-                description:"I hope it works",
-                notes:" ",
-                percentCompleted: 45,
-                duedatetime: Date.now(),
-                labels: "Personal",
-                team:" hello"
-            }
+            task:{}
         }
         
     }
     
+    componentDidMount(){
+        const _ID=this.props.match.params.ID;
+        let token=localStorage.getItem('token');
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+        if(token){
+
+            axios.get(`http://localhost:3000/tasks/${_ID}`,
+            config
+            ).then((res)=>{
+                this.setState({
+                    tasks:res.data
+                })
+                // console.log(res.data)
+            }).catch((error)=>{
+                console.log(error)
+            })
+
+        }
+    }
 
     handleSubmit=(event)=>{
         event.preventDefault();
+        const _ID=this.props.match.params.ID;
         const description=event.target.description.value;
         const notes=event.target.notes.value;
         const labels=event.target.labels.value;
         const duedatetime=event.target.duedatetime.value;
         const percentCompleted=event.target.percentCompleted.value;
 
+        let data={};
+        data['description']=description;
+        data['notes']=notes;
+        data['labels']=labels;
+        data['duedatetime']=duedatetime;
+        data['percentCompleted']=percentCompleted;
+
+        let token=localStorage.getItem('token');
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+
+        axios.patch(`http://localhost:3000/tasks/${_ID}`,
+        data,
+        config).then((res)=>{
+            // this.props.history.push('/')
+            console.log('done')
+            this.forceUpdate();
+        }).catch((error)=>{
+            console.log(error)
+        })
+
         console.log(percentCompleted);
     }
 
     render() {
         const {task}=this.state;
+        if(task.team){
+            const _ID=this.props.task._id;
+            let token=localStorage.getItem('token');
+            const config = {
+                headers: { Authorization: `Bearer ${token}` }
+            };            
+            axios.get(`http://localhost:3000/team/${_ID}`,
+            config
+            ).then((res)=>{
+                task.teamname= res.data.name;
+            }).catch((error)=>{
+                console.log(error)
+            })
+        }
         return (
             <div className="task">
                 <form onSubmit={this.handleSubmit}>
@@ -43,7 +95,7 @@ class EditTask extends Component {
 
                 <div class="form-group">
                     <label for="team">Team:</label>
-                    <input type="name"   class="form-control" value={task.team} id="team" readOnly />
+                    <input type="name"   class="form-control" value={task.teamname} id="team" readOnly />
                 </div>
                     :
                     ""

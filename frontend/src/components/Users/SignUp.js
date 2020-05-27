@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/Login.css'
+import axios from 'axios';
 
 class SignUp extends Component {
 
@@ -19,34 +20,35 @@ class SignUp extends Component {
     }
 
     handleSubmit=(event)=>{
-        const password=event.target.elements.password.value;
-        const password2=event.target.elements.password2.value;
+        event.preventDefault();
+        const password=event.target.elements.pwd.value;
+        const password2=event.target.elements.pwd2.value;
         const email=event.target.email.value;
         const name=event.target.name.value;
         
         console.log(email)
 
-        // if(this.validateForm(this.state.errors) && password===password2 && password.length>6){
+        if(this.validateForm(this.state.errors) && password===password2 && password.length>6){
             
-        //     axios.post('http://localhost:8080/users/',{
-        //         email,
-        //         password,
-        //         name
-        //     }).then((res)=>{
-        //         localStorage.setItem('token',res.data.token)
-        //         localStorage.setItem('user',JSON.stringify(res.data.user))
-        //         this.props.history.push('/');
-        //         // console.log(res.data.token)
-        //     })
-        // }
-        // else{
-        //     let errors=this.state.errors;
-        //     errors.password='The two passwords do not match';
-        //     this.setState({
-        //         errors
-        //     });
-        //     console.log('Invalid form')
-        // }
+            axios.post('http://localhost:3000/users/signup',{
+                email,
+                password,
+                name
+            }).then((res)=>{
+                localStorage.setItem('token',res.data.token)
+                localStorage.setItem('user',JSON.stringify(res.data.user))
+                // this.props.history.push('/');
+                console.log(res.data)
+            })
+        }
+        else{
+            let errors=this.state.errors;
+            errors.password='The two passwords do not match';
+            this.setState({
+                errors
+            });
+            console.log('Invalid form')
+        }
     }
 
 
@@ -65,13 +67,13 @@ class SignUp extends Component {
 
         switch(name){
             case 'name':
-                errors.name=value.length<5?'Full Name must be 5 Characters':"";
+                errors.name=value.length<3?'Full Name must be atleast 3 Characters':"";
                 break;
             default:
                 break;
         }
         this.setState({errors,[name]:value},()=>{
-            console.log(errors);
+            // console.log(errors);
         })
     }
 
