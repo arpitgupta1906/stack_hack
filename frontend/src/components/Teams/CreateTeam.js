@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/AddTask.css'
+import axios from 'axios';
 
 class CreateTeam extends Component {
 
@@ -7,6 +8,26 @@ class CreateTeam extends Component {
         event.preventDefault();
         const name=event.target.name.value;
         const agenda=event.target.agenda.value;
+
+        let token=localStorage.getItem('token');
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+        
+
+        axios.post(`http://localhost:3000/createteam`,
+        {
+            name,
+            agenda
+        },
+        config).then((res)=>{
+            // this.props.history.push('/')
+            
+            console.log(res.data)
+            this.forceUpdate();
+        }).catch((error)=>{
+            console.log(error)
+        })
 
         console.log(name);
     }
