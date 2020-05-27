@@ -16,6 +16,7 @@ class Layout extends Component {
 
 
     render() {
+
         return (
             <div>
                 <nav className="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
@@ -45,12 +46,24 @@ class Layout extends Component {
                     this.state.isAuthenticated?
                 <div class="sidenav">
                     <div className="sidebar-header">
-                        Main
+                        All Tasks
                     </div>
-                    <a href="#">About</a>
-                    <a href="#">Services</a>
-                    <a href="#">Clients</a>
-                    <a href="#">Contact</a>
+                    <a href="#">Personal</a>
+                    <a href="#">Work</a>
+                    <a href="#">Shopping</a>
+                    <a href="#">Others</a>
+                    <a href="#">+Add Task</a>
+                    <a href="#">Join Team</a>
+                    <div className="sidebar-header">
+                        Teams
+                    </div>
+                    <a href="#">Team1</a>
+                    <div className="sidebar-header">
+                    <a href="#">
+                       + Team
+
+                    </a>
+                    </div>
                 </div>
                     :
                     ""

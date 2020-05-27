@@ -1,0 +1,15 @@
+.task-a{
+    color: white;
+}
+
+.add-task{
+    /* margin-left: 1%; */
+    /* margin-bottom: 1%; */
+    width: 70%;
+    border-color: grey;
+    background-color: grey;
+    float: top;
+    position: relative;
+    border-radius: 0%;
+    /* top: 10%; */
+}
