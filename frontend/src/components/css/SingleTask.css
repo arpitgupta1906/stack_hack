@@ -62,3 +62,45 @@ button{
     width: 30%;
     
 }
+
+.test1{
+    top: 5%;
+    background-color: yellow;
+    /* border-radius: 50%; */
+    padding: 4px;
+    text-align: center;
+    width: 30%;
+}
+
+.test2{
+
+    top: 5%;
+    /* right: 0%; */
+    float: right;
+    margin-right: 5px;
+    padding: 1%;
+    background-color: yellowgreen;
+    text-align: right;
+    border-radius: 35%;
+
+}
+
+.test3{
+    margin-right: 5px;
+    top: 5%;
+    float: right;
+    padding: 1%;
+    background-color: turquoise;
+    text-align: right;
+    border-radius: 35%;
+}
+
+.test4{
+    margin-right: 5px;
+    top: 5%;
+    float: right;
+    padding: 1%;
+    background-color: red;
+    text-align: right;
+    border-radius: 35%;
+}
