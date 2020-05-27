@@ -11,13 +11,15 @@ import EditTask from './components/Tasks/EditTask';
 // import CreateTeam from './components/Teams/CreateTeam';
 // import TeamProfile from './components/Teams/TeamProfile';
 import TeamBoard from './containers/TeamBoard';
+import ResetProfile from './components/Users/ResetProfile';
 
 function App() {
   return (
     <div className="App">
       <Layout>
-      <UpdateProfile />
-
+      {/* <AddTask team=""/> */}
+    {/* <EditTask/> */}
+    <ResetProfile />
         {/* <AddTask team="" id="" /> */}
         {/* <TasksList /> */}
       </Layout>
@@ -34,3 +36,4 @@ export default App;
 //single task
 //tasklist
 //updateprofile
+//add task

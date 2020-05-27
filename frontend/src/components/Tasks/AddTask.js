@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/AddTask.css'
+import axios from 'axios';
 
 
 ////for team input,send team="team name as input" and id=team id
@@ -7,7 +8,15 @@ import '../css/AddTask.css'
 
 class AddTask extends Component {
 
-    handleSubmit=(event)=>{
+    constructor(props) {
+        super(props);
+        this.state={
+            defaultdate:new Date()
+        }
+    }
+    
+
+    handleSubmit=async (event)=>{
         event.preventDefault();
         const description=event.target.description.value;
         const notes=event.target.notes.value;
@@ -15,7 +24,28 @@ class AddTask extends Component {
         const duedatetime=event.target.duedatetime.value;
         const percentCompleted=event.target.percentCompleted.value;
 
-        console.log(percentCompleted);
+        console.log(duedatetime)
+
+        let token=localStorage.getItem('token');
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+
+        try{
+
+            const tasks=await axios.post('http://localhost:3000/tasks/add',{
+                description,
+                notes,
+                labels,
+                dueDateTime:duedatetime,
+                percentCompleted
+            }, config)
+        }
+        catch(e){
+            console.log(e);
+        }
+
+        // console.log(percentCompleted);
     }
 
     render() {
@@ -48,7 +78,7 @@ class AddTask extends Component {
                 <div className="form-group">
                 <label  for="duedatetime">Choose a time for your appointment:</label>
                 <input className="form-control" type="datetime-local" id="duedatetime"
-                name="duedatetime"  defaultValue={Date.now()}
+                name="duedatetime" defaultValue={this.state.defaultdate}
                 min={Date.now()} />
 
                 <label  for="labels">Add task label:</label>
@@ -63,7 +93,7 @@ class AddTask extends Component {
                 <label for="customRange3">Percentage Completed:</label>
                 <input type="range"  className="form-control" defaultValue="0" class="custom-range" name="percentCompleted" min="0" max="100" step="1" id="customRange3" />
                 </div>
-                <button type="submit" class="btn btn-primary">Add Task</button>
+                <button type="submit" class="btn btn-primary">+ Add Task</button>
                 </form>
 
             </div>

@@ -9,6 +9,7 @@ const {authorization}=require('../emails/accounts')
 const nodemailer=require('nodemailer')
 
 //Add notes
+//Add task count in profile
 
 router.post('/users/signup',async (req,res)=>{
     const user=new User(req.body)
