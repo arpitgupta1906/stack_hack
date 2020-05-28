@@ -9,3 +9,11 @@
 a{
     color: cornsilk;
 }
+
+.pointers{
+    color: cornsilk;
+    margin-right: 5%;
+    margin-top: 5px;
+    padding: 5px;
+    padding-top: 50px;
+}
