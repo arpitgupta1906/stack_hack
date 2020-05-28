@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../css/AddTask.css'
 import axios from 'axios';
+import {withRouter} from 'react-router-dom';
+
 
 class JoinTeam extends Component {
 
@@ -32,10 +34,9 @@ class JoinTeam extends Component {
             invitecode: parseInt(code)
         },
         config).then((res)=>{
-            // this.props.history.push('/')
-            
-            console.log(res.data)
-            this.forceUpdate();
+            this.props.history.push(`/team/${res.data._id}`)
+            window.location.reload();
+            // console.log(res.data)
         }).catch((error)=>{
             // this.setState({
             //     error:error

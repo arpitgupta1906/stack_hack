@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import '../css/AddTask.css'
 import axios from 'axios';
+import {withRouter} from 'react-router-dom';
 
-
-////for team input,send team="team name as input" and id=team id
+//for team input,send team="team name as input" and id=team id
 
 
 class AddTeamTask extends Component {
@@ -11,48 +11,12 @@ class AddTeamTask extends Component {
     constructor(props) {
         super(props);
         this.state={
+            team:"",
             defaultdate:new Date()
         }
     }
     
-
-    handleSubmit=async (event)=>{
-        event.preventDefault();
-        const description=event.target.description.value;
-        const notes=event.target.notes.value;
-        const labels=event.target.labels.value;
-        const duedatetime=event.target.duedatetime.value;
-        const percentCompleted=event.target.percentCompleted.value;
-
-        console.log(duedatetime)
-
-        let token=localStorage.getItem('token');
-        const config = {
-            headers: { Authorization: `Bearer ${token}` }
-        };
-
-        const _ID=this.props.match.params.ID;
-        try{
-
-            const task=await axios.post('http://localhost:3000/team/${_ID}/task',{
-                description,
-                notes,
-                labels,
-                dueDateTime:duedatetime,
-                percentCompleted
-            }, config)
-            console.log(task)
-        }
-        catch(e){
-            console.log(e);
-        }
-
-        console.log(percentCompleted);
-    }
-
-    render() {
-
-        let team;
+    componentDidMount(){
 
         const _ID=this.props.match.params.ID;
         
@@ -64,12 +28,56 @@ class AddTeamTask extends Component {
 
         axios.get(`http://localhost:3000/team/${_ID}`,
         config).then((res)=>{
-          team=res.data.name
+            
+          this.setState({
+              team:res.data.name
+          })
+          
         }).catch((error)=>{
             console.log(error)
         })
 
-        console.log(team)
+        // console.log('here');
+    }
+
+    handleSubmit=async (event)=>{
+        event.preventDefault();
+        const description=event.target.description.value;
+        const notes=event.target.notes.value;
+        const labels=event.target.labels.value;
+        const duedatetime=event.target.duedatetime.value;
+        const percentCompleted=event.target.percentCompleted.value;
+
+        let token=localStorage.getItem('token');
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+
+        const _ID=this.props.match.params.ID;
+        // console.log(_ID)
+        try{
+
+            const task=await axios.post(`http://localhost:3000/team/${_ID}/task`,{
+                description,
+                notes,
+                labels,
+                dueDateTime:duedatetime,
+                percentCompleted
+            }, config)
+            this.props.history.push(`/team/${_ID}`)
+            // window.location.reload();
+            console.log(task)
+        }
+        catch(e){
+            console.log(e);
+        }
+        this.props.history.push(`/team/${_ID}`)
+    }
+
+    render() {
+
+        const {team}=this.state
+        // console.log(team)
         return (
             <div className="task">
                 <form onSubmit={this.handleSubmit}>
@@ -120,4 +128,6 @@ class AddTeamTask extends Component {
     }
 }
 
-export default AddTeamTask;
+export default withRouter(AddTeamTask);
+
+
