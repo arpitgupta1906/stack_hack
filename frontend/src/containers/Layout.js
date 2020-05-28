@@ -19,9 +19,12 @@ class Layout extends Component {
         if(localStorage.getItem('token')){
             this.setState({
                 isAuthenticated:true,
-                teams:[]
+                teams:[],
+                user:JSON.parse(localStorage.getItem('user')).name
             })
 
+            // console.log(this.state.user)
+;
 
             let token=localStorage.getItem('token');
             const config = {
@@ -95,6 +98,16 @@ class Layout extends Component {
                     <li className="nav-item active">
                     <a className="navbar-brand" href="#">ToDoIst</a>
                     </li>
+                    <li className="nav-item">
+                    <a className="navbar-brand" href="#">                  </a>
+                    </li>
+                    {
+                        this.state.isAuthenticated?
+                    <li className="nav-item">
+                    <a className="navbar-brand" href="/profile">@{this.state.user}</a>
+                    </li>
+                        :""
+                    }
                 </ul>
 
                 <ul class="navbar-nav navbar-right please">

@@ -114,7 +114,11 @@ class SingleTask extends Component {
                 
                 {
                     task.overdue? 
-                <span className="test4">Overdue</span>
+                <span className="test4">
+                <a href="/tasks/overdue">
+                Overdue
+                </a>
+                </span>
                 : ""
                 }
                  </p>

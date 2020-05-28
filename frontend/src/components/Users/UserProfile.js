@@ -21,7 +21,7 @@ class UserProfile extends Component {
             this.setState({
                 isAuthenticated: true
             })
-            axios.get('http://localhost:8080/users/profile/',
+            axios.get('http://localhost:3000/users/profile/',
             config
             ).then((res)=>{
                 this.setState({
@@ -36,6 +36,8 @@ class UserProfile extends Component {
     }
 
     render() {
+        const teams=this.state.user.teams
+       
         return (
             <div>
                 <div class="card">
@@ -45,11 +47,18 @@ class UserProfile extends Component {
                 alt="John" className="imageclass" width="42" height="42" />
                 <h1>{this.state.user.name}</h1>
                 <p class="title">Active Member</p>
-                <p>Tasks Completed: {this.state.user.tasksCompleted}</p>
-                {/* <p>Tasks InComplete: {this.state.user.taskIncomplete}</p>
-                <p>Number of Teams: {this.state.user.numberOfTeams}</p> */}
+                {/* <p>Tasks Completed: {this.state.user.tasksCompleted}</p> */}
+                {/* <p>Tasks InComplete: {this.state.user.taskIncomplete}</p>*/}
+                {
+                    teams?
+                <p>Number of Teams: {teams.length}</p> 
+                    :""
+                }
                 <p><button>{this.state.user.email}</button></p>
                 </div>
+                <button type="button"  class="btn btn-primary update-button">
+                <a className="" href={`/update`}>Update</a>
+                </button>
             </div>
         );
     }
