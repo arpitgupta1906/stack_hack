@@ -5,11 +5,8 @@ import axios from 'axios';
 class UpdateProfile extends Component {
     constructor(props) {
         super(props);
-        // const user=JSON.parse(localStorage.getItem('user'));
-        const user={
-            name:"arpire",
-            email:"gupta.25@iitj.ac.in"
-        }
+        const user=JSON.parse(localStorage.getItem('user'));
+        
         this.state={
             
                 email: user.email,
@@ -34,6 +31,10 @@ class UpdateProfile extends Component {
         const name=event.target.elements.name.value;
 
         console.log(name);
+        const user=JSON.parse(localStorage.getItem('user'));
+        user.name=name;
+        localStorage.setItem('user',JSON.stringify(user));
+        // console.log(user);
 
         if(this.validateForm(this.state.errors) && (password===password2 || password.length===0)){
             let data={}
@@ -50,8 +51,8 @@ class UpdateProfile extends Component {
             data,
             config
             ).then((res)=>{
-                // this.props.history.push('/')
-                console.log(res.data)
+                this.props.history.push('/profile')
+                // console.log(res.data)
                 this.forceUpdate();
             }).catch((error)=>{
                 console.log(error)
@@ -90,7 +91,7 @@ class UpdateProfile extends Component {
                 break;
         }
         this.setState({errors,[name]:value},()=>{
-            console.log(errors);
+            // console.log(errors);
         })
     }
 

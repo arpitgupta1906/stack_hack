@@ -8,11 +8,14 @@
     text-align: center;
     align-items: center;
     color: black;
-    background-color: gray;
+    /* background-color: gray; */
+    /* background-color: burlywood; */
+    background-color: teal;
   }
   
   .title {
     color: grey;
+    color: whitesmoke;
     font-size: 18px;
   }
   
@@ -43,4 +46,12 @@
       /* align-items: center; */
       height: 70%;
     width:80%;
+  }
+
+  .update-button{
+    /* margin-left: 10%; */
+    background-color: rgb(19, 91, 124);
+    border-color: gray;
+    margin-left: 8em;
+    max-width: 300px;
   }
