@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Login.css'
 import axios from 'axios';
+import {withRouter} from 'react-router-dom';
 
 class ResetProfile extends Component {
 
@@ -15,15 +16,15 @@ class ResetProfile extends Component {
     handleSubmit=async (event)=>{
         event.preventDefault();
         const email=event.target.email.value;
-        console.log(email)
+        // console.log(email)
         try{
 
-            const user=await axios.patch('http://localhost:3000/resetpassword',{
+            const res=await axios.patch('http://localhost:3000/resetpassword',{
                 email
             })
-            if(user){
-                // this.props.history.push(`/${user._id}`)
-                // console.log(user);
+            if(res.data._id){
+                this.props.history.push(`/resetpassword/${res.data._id}`)
+                // console.log(res.data._id);
             }
             else{
                 console.log('error')
@@ -38,7 +39,8 @@ class ResetProfile extends Component {
         return (
             <div className='login'>
         <form onSubmit={this.handleSubmit}>
-
+            <h4>OTP will be sent to your email</h4>
+            <br />
         <div class="form-group">
             <label for="email">Email address:</label>
             <input type="email"  class="form-control" placeholder="Enter email" id="email" />
@@ -46,6 +48,11 @@ class ResetProfile extends Component {
         <button type="submit" class="btn btn-primary">Verify</button>
 
         </form>
+        
+        <a className="pointers" href="/signup">Signup?</a>
+        <a className="pointers" href="/login">
+        Login
+        </a>
         {/* {
             this.state.check?
             <div>
@@ -60,4 +67,4 @@ class ResetProfile extends Component {
     }
 }
 
-export default ResetProfile;
+export default withRouter(ResetProfile);

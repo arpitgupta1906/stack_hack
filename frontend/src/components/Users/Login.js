@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Login.css'
 import axios from 'axios';
+import {withRouter} from 'react-router-dom';
 
 class Login extends Component {
 
@@ -18,7 +19,7 @@ class Login extends Component {
             console.log(res.data.user)
             localStorage.setItem('token',res.data.token)
             localStorage.setItem('user',JSON.stringify(res.data.user))
-            // this.props.history.push('/')
+            this.props.history.push('/tasks/all')
             // console.log(localStorage.getItem('token'))
         })
         .catch(error=>console.error(error));
@@ -39,8 +40,8 @@ class Login extends Component {
                 <input name='password' type="password" class="form-control" placeholder="Enter password" id="pwd" />
             </div>
             <div className="form-group">
-            <a href="#"> Sign Up?</a>
-            <a href="#"> Forgot Password?</a>
+            <a href="/signup"> Sign Up?</a>
+            <a href="/forgotpassword"> Forgot Password?</a>
             </div>
             
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -50,4 +51,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);
