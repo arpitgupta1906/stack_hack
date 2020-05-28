@@ -86,6 +86,11 @@ button{
 
 }
 
+.test2 a{
+    text-decoration: none;
+    font-size: 90%;
+}
+
 .test3{
     margin-right: 5px;
     top: 5%;
@@ -94,6 +99,11 @@ button{
     background-color: turquoise;
     text-align: right;
     border-radius: 35%;
+}
+
+.test3 a{
+    text-decoration: none;
+    font-size: 100%;
 }
 
 .test4{

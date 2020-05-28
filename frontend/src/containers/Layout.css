@@ -20,6 +20,10 @@
   float: right;
 }
 
+/* .please a:hover{
+  color: black;
+} */
+
 .please2{
   float: right;
 }
@@ -33,7 +37,7 @@
 
 /* The sidebar menu */
 .sidenav {
-    margin-top: 2.6rem;
+    margin-top: 2.6%;
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 200px; /* Set the width of the sidebar */
     position: fixed; /*Fixed Sidebar (stay in place on scroll) */
@@ -60,6 +64,7 @@
     color: #f1f1f1;
   }
   
+  
   /* Style page content */
   .main {
     /* margin-top: 5%; */
@@ -78,3 +83,7 @@
     /* background: #cbced8; */
     background: darkblue;
 }
+
+
+
+

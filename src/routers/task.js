@@ -57,6 +57,10 @@ router.get('/tasks', auth,async (req,res)=>{
         match.completed=req.query.completed==='true'
     }
 
+    if(req.query.labels){
+        match.labels=req.query.labels
+    }
+
     if(req.query.description){
         match.description=req.query.description
     }
@@ -80,6 +84,8 @@ router.get('/tasks', auth,async (req,res)=>{
         const parts=req.query.sortBy.split(':')
         sort[parts[0]]=parts[1]==='desc'?-1:1
     }
+
+    sort['dueDateTime']=1;
 
     try{
         // const task=await Task.find({owner:req.user._id});
@@ -169,9 +175,9 @@ router.patch('/tasks/:id', auth,async (req,res)=>{
 
         updates.forEach((update)=>{
             task[update]=req.body[update]
-            task['overdue']=false;
-            task['status']='Completed'
         })
+        task['overdue']=false;
+        task['status']='Completed'
 
         if(task['percentCompleted']>99){
             task['completed']=true;

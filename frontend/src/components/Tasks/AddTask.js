@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/AddTask.css'
 import axios from 'axios';
-
+import {withRouter} from 'react-router-dom';
 
 ////for team input,send team="team name as input" and id=team id
 
@@ -40,6 +40,8 @@ class AddTask extends Component {
                 dueDateTime:duedatetime,
                 percentCompleted
             }, config)
+            this.props.history.push('/tasks');
+            this.forceUpdate();
         }
         catch(e){
             console.log(e);
@@ -101,4 +103,4 @@ class AddTask extends Component {
     }
 }
 
-export default AddTask;
+export default withRouter(AddTask);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../css/SingleTask.css'
 import Moment from 'react-moment';
 import axios from 'axios';
+import {withRouter} from 'react-router-dom';
 
 class SingleTask extends Component {
 
@@ -37,8 +38,9 @@ class SingleTask extends Component {
 
         try{
             const res=await axios.delete(`http://localhost:3000/tasks/${_ID}`,config)
-            console.log("deleted")
-            this.forceUpdate()
+            // console.log("deleted")
+            // this.props.history.push('/tasks')
+            window.location.reload();
         }
         catch(e){
             console.log(e)
@@ -91,11 +93,18 @@ class SingleTask extends Component {
         return (
             <div className="singletask">
             <li className="list-group-item">
-                <p> <span className="test1"><Moment format="D-ddd MMMM-YY HH:mm a">{task.dueDateTime}</Moment></span> <span className="test2">{task.labels}</span>
+                <p> <span className="test1"><Moment format="D-ddd MMMM-YY HH:mm a">{task.dueDateTime}</Moment></span>
+                 <span className="test2">
+                 <a href={`/tasks/${task.labels}`}>
+                 {task.labels}
+                 </a>
+                 </span>
                 {
                     task.completed?
                 <span className="test3">
+                <a href="/tasks/archived">
                     Completed
+                </a>
                 </span> 
                     :
                     <span className="test5">
@@ -134,7 +143,7 @@ class SingleTask extends Component {
                 }
 
                 <button type="button"  class="btn btn-primary task-button">
-                <a className="task-a update-please" href="#">Update</a>
+                <a className="task-a update-please" href={`/${this.props.task._id}/update`}>Update</a>
                 </button>
 
                 <button type="button" onClick={this.ondelete} class="btn btn-danger task-button">
@@ -147,7 +156,7 @@ class SingleTask extends Component {
     }
 }
 
-export default SingleTask;
+export default withRouter(SingleTask);
 
 
 
