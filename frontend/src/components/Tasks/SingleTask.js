@@ -127,17 +127,17 @@ class SingleTask extends Component {
                 <p className="content">
                 {
                     !task.completed?
-                    <button type="button" onClick={this.markasdone} class="btn btn-success">
+                    <button type="button" onClick={this.markasdone} class="btn btn-success task-button">
                     Done?
                     </button>
                     :""
                 }
 
-                <button type="button"  class="btn btn-primary">
-                <a className="task-a" href="#">Update</a>
+                <button type="button"  class="btn btn-primary task-button">
+                <a className="task-a update-please" href="#">Update</a>
                 </button>
 
-                <button type="button" onClick={this.ondelete} class="btn btn-danger">
+                <button type="button" onClick={this.ondelete} class="btn btn-danger task-button">
                 Delete
                 </button>
                 </p>

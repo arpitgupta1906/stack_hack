@@ -9,7 +9,7 @@ class ResetProfile extends Component {
         const _ID=this.props.match.params.ID;
         const password=event.target.email.value;
         const code=event.target.code.value;
-        console.log(email)
+       
         try{
 
             const user=await axios.post(`http://localhost:3000/resetcode/${_ID}`,{

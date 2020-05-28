@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
-import TaskList from './containers/TaskList';
+import TasksList from './containers/TasksList';
 import Login from './components/Users/Login';
 import SignUp from './components/Users/SignUp';
 import UpdateProfile from './components/Users/UpdateProfile';
@@ -15,17 +15,20 @@ import Invite from './components/Teams/Invite';
 import JoinTeam from './components/Teams/JoinTeam';
 import TeamProfile from './components/Teams/TeamProfile';
 import TeamBoard from './containers/TeamBoard';
+import Home from './containers/Home';
 
 const BaseRouter=()=>(
     <div>
-        <Route exact path='/' component={TaskList} />
+        {/* <Route exact path='/' component={TasksList} /> */}
+        <Route exact path='/' component={Home} />
         <Route exact path='/login/' component={Login} />
         <Route exact path='/signup/' component={SignUp} />
         <Route exact path='/update/' component={UpdateProfile} />
         <Route exact path='/profile/' component={UserProfile} />
         <Route exact path='/forgotpassword/' component={ResetProfile} />
         <Route exact path='/resetpassword/:ID/' component={OtpPage} />
-        <Route exact path='/tasks/:LABEL/' component={TaskList} />
+        <Route exact path='/tasks/' component={TasksList} />
+        <Route exact path='/tasks/:LABEL/' component={TasksList} />
         <Route exact path='/addtask/' component={AddTask} />
         <Route exact path='/jointeam/' component={JoinTeam} />
         <Route exact path='/team/:ID/' component={TeamBoard} />

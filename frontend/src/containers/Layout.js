@@ -1,28 +1,84 @@
 import React, { Component } from 'react';
 import './Layout.css';
-
+import axios from 'axios';
+import Home from './Home';
+import {Link,withRouter} from 'react-router-dom';
 
 class Layout extends Component {
 
     constructor(props) {
         super(props);
         this.state={
-            isAuthenticated: true
+            isAuthenticated: false
         }
 
-        console.log(this.state.isAuthenticated)
     }
     
+    componentDidMount(){
+        
+        if(localStorage.getItem('token')){
+            this.setState({
+                isAuthenticated:true,
+                teams:[]
+            })
+
+
+            let token=localStorage.getItem('token');
+            const config = {
+                headers: { Authorization: `Bearer ${token}` }
+            };
+            axios.get('http://localhost:3000/users/teams',
+            config
+            ).then((res)=>{
+                this.setState({
+                    teams:res.data
+                })
+                // console.log(this.state.teams)
+            }).catch((error)=>{
+                console.log(error)
+            })
+
+        }
+    }
+
+    clickLogout=(event)=>{
+        let token=localStorage.getItem('token')
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+        
+        axios.post('http://localhost:8080/users/logout',
+        {
+            token
+        },
+        config
+        ).then((res)=>{
+            this.setState({
+                isAuthenticated:false
+            })
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            this.props.history.push('/');
+        }).catch((error)=>{
+            console.log(error);
+        })
+    }
 
 
     render() {
+        let teamlist
+        if(this.state.isAuthenticated){
+            teamlist=this.state.teams.map((team)=>{
+                return <a href={`/team/${team._id}`}>{team.name}</a>
+            })
+        }
 
         return (
             <div>
                 <nav className="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
                 <ul className="navbar-nav">
                     <li className="nav-item active">
-                    <a className="navbar-brand" href="#">Active</a>
+                    <a className="navbar-brand" href="#">ToDoIst</a>
                     </li>
                     <li className="nav-item">
                     <a className="nav-link" href="#">Link</a>
@@ -36,9 +92,21 @@ class Layout extends Component {
                 </ul>
 
                 <ul class="navbar-nav navbar-right please">
-                    <li className="nav-item please text-nowrap">
-                    <a className="nav-link" href="#">Logout</a>
+                {this.state.isAuthenticated?
+                    <li className="nav-item please2 text-nowrap">
+                    <a className="nav-link" onClick={this.clickLogout} href="#">Logout</a>
                     </li>
+                :
+                <span>
+
+                <li className="nav-item please2 text-nowrap">
+                    <a className="nav-link" href="/login">Login</a>
+                </li>
+                <li className="nav-item please2 text-nowrap">
+                    <a className="nav-link" href="/signup">SignUp</a>
+                </li>
+                </span>
+                }
                 </ul>
                 </nav>
                 <div className="my-content">
@@ -46,31 +114,27 @@ class Layout extends Component {
                     this.state.isAuthenticated?
                 <div class="sidenav">
                     <div className="sidebar-header">
+                        <a href="/tasks">
                         All Tasks
+                        </a>
                     </div>
-                    <a href="#">+Add Task</a>
-                    <a href="#">Personal</a>
-                    <a href="#">Work</a>
-                    <a href="#">Shopping</a>
-                    <a href="#">Others</a>
+                    <a href="/tasks/all">+Add Task</a>
+                    <a href={`/tasks/Personal`}>Personal</a>
+                    <a href={`/tasks/Work`}>Work</a>
+                    <a href={`/tasks/Shopping`}>Shopping</a>
+                    <a href={`/tasks/Others`}>Others</a>
                     <div className="sidebar-header">
-                    <a href="#">Archived</a>
+                    <a href={`/tasks/archived`}>Archived</a>
                     </div>
-                    <a href="#">Join Team</a>
-                    <a href="#">+ Team</a>
+                    <a href={`/jointeam`}>Join Team</a>
+                    <a href="/createteam">+ Team</a>
                     <div className="sidebar-header">
                         Teams
                     </div>
-                    <a href="#">Team1</a>
-                    <a href="#">Team2</a>
-                    <a href="#">Team1</a>
-                    <a href="#">Team1</a>
-                    <a href="#">Team1</a>
-                    <a href="#">Team1</a>
-                    <a href="#">Team1</a>
+                    {teamlist}
                 </div>
                     :
-                    ""
+                    <Home />
                 }
                 
                 <div className="app-header">
@@ -83,4 +147,4 @@ class Layout extends Component {
     }
 }
 
-export default Layout;  
+export default  withRouter(Layout);  

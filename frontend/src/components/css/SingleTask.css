@@ -115,3 +115,13 @@ button{
     text-align: right;
     border-radius: 45%;
 }
+
+.task-button{
+    width:20%;
+    height: 200%;
+    /* font-size: 80%; */
+}
+
+.update-please{
+    font-size: 90%;
+}
