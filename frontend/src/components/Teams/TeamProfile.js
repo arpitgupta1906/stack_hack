@@ -8,17 +8,8 @@ class TeamProfile extends Component {
         super(props);
         
         this.state={
-
-            team:{
-                name:"this is the one",
-                agenda:"please work",
-                invitecode: 12323,
-                members:[
-                    'hello world',
-                    'I am better',
-                    'Sup?'
-            ]
-            }
+            team:{},
+            members:[]
         }
     }
 
@@ -30,28 +21,25 @@ class TeamProfile extends Component {
              headers: { Authorization: `Bearer ${token}` }
          };
          
- 
          axios.get(`http://localhost:3000/team/${_ID}`,
          config).then((res)=>{
 
             this.setState({
                 team:res.data
             }) 
-             this.forceUpdate();
+            
          }).catch((error)=>{
              console.log(error)
-         })
+         })   
 
-         
-
-             axios.get(`http://localhost:3000/team/${_ID}/members`,config).
-             then((res)=>{
-                 this.setState({
-                     members:res
-                 })
-             }).catch((e)=>{
-                 console.log(e);
-             })
+        axios.get(`http://localhost:3000/team/${_ID}/members`,config).
+        then((res)=>{
+            this.setState({
+                members:res.data
+            })
+        }).catch((e)=>{
+            console.log(e);
+        })
          
     }
 
@@ -71,8 +59,8 @@ class TeamProfile extends Component {
              agenda
          },
          config).then((res)=>{             
-             console.log(res.data)
-             this.forceUpdate();
+            //  console.log(res.data)
+             window.location.reload();
          }).catch((error)=>{
              console.log(error)
          })
@@ -91,7 +79,7 @@ class TeamProfile extends Component {
          {},
          config).then((res)=>{             
              console.log(res.data.invitecode)
-             this.forceUpdate();
+             window.location.reload();
          }).catch((error)=>{
              console.log(error)
          })
@@ -100,12 +88,14 @@ class TeamProfile extends Component {
     render() {
 
         const {team,members}=this.state
-        const memberlist=members.map((member)=>{
+        const memberlist=this.state.members.map((member)=>{
             return <div>
 
             <p>{member.name}</p>
             </div>
         })
+
+        console.log(memberlist)
 
         return (
             <div className="task">

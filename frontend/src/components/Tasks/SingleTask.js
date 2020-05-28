@@ -76,7 +76,8 @@ class SingleTask extends Component {
         task.dueDateTime=new Date(task.dueDateTime)
 
         if(task.team){
-            const _ID=this.props.task._id;
+            
+            const _ID=this.props.task.team;
             let token=localStorage.getItem('token');
             const config = {
                 headers: { Authorization: `Bearer ${token}` }
@@ -85,13 +86,17 @@ class SingleTask extends Component {
             config
             ).then((res)=>{
                 task.teamname= res.data.name;
+                console.log(task.teamname)
             }).catch((error)=>{
                 console.log(error)
             })
         }
 
+        console.log(task.teamname)
+        const {tn}=task
         return (
             <div className="singletask">
+
             <li className="list-group-item">
                 <p> <span className="test1"><Moment format="D-ddd MMMM-YY HH:mm a">{task.dueDateTime}</Moment></span>
                  <span className="test2">
@@ -126,10 +131,9 @@ class SingleTask extends Component {
                 <p className="content">{task.notes}</p>
                 {
                     task.team?
-                <p className="content">Team:{task.teamname}</p>
+                <p className="content">Team:{tn}</p>
                 :""
                 }
-                {/* <p> {task.overdue}</p> */}
                 <p>
                     
                 <label for="customRange3">Percentage Completed:</label>

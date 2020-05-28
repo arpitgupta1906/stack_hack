@@ -31,11 +31,11 @@ const BaseRouter=()=>(
         <Route exact path='/tasks/:LABEL/' component={TasksList} />
         <Route exact path='/addtask/' component={AddTask} />
         <Route exact path='/jointeam/' component={JoinTeam} />
-        <Route exact path='/team/:ID/' component={TeamBoard} />
         <Route exact path='/createteam/' component={CreateTeam} />
-        <Route exact path='team/:ID/addtask/' component={AddTeamTask} />
-        <Route exact path='team/:ID/invite/' component={Invite} />
+        <Route exact path='/team/:ID/addtask/' component={AddTeamTask} />
+        <Route exact path='/team/:ID/invite/' component={Invite} />
         <Route exact path='/team/:ID/profile/' component={TeamProfile} />
+        <Route exact path='/team/:ID/' component={TeamBoard} />
         <Route exact path='/:ID/update/' component={EditTask} />
 
     </div>

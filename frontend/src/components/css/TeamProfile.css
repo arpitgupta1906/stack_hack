@@ -9,6 +9,11 @@ button{
     border-width: 5px;
     border-style: solid;
     width: inherit;
+    padding-top: 5px;
     /* background-color: grey; */
     color: white;
+}
+
+.members p{
+    margin-top: 7px;
 }

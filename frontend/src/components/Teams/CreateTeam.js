@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../css/AddTask.css'
 import axios from 'axios';
+import {withRouter} from 'react-router-dom';
+
 
 class CreateTeam extends Component {
 
@@ -21,10 +23,8 @@ class CreateTeam extends Component {
             agenda
         },
         config).then((res)=>{
-            // this.props.history.push('/')
-            
-            console.log(res.data)
-            this.forceUpdate();
+            this.props.history.push(`/team/${res.data._id}`)
+            window.location.reload();
         }).catch((error)=>{
             console.log(error)
         })
@@ -49,7 +49,7 @@ class CreateTeam extends Component {
                     <input name="agenda" class="form-control" placeholder="Add agenda" id="agenda" />
                 </div>
 
-                <button type="submit" class="btn btn-primary">Add Task</button>
+                <button type="submit" class="btn btn-primary">Create</button>
                 </form>
 
             </div>
@@ -57,4 +57,4 @@ class CreateTeam extends Component {
     }
 }
 
-export default CreateTeam;
+export default withRouter(CreateTeam);

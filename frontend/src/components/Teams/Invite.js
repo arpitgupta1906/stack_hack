@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../css/AddTask.css'
 import axios from 'axios';
+import {withRouter} from 'react-router-dom';
+
 class Invite extends Component {
 
     handleSubmit=(event)=>{
@@ -9,22 +11,25 @@ class Invite extends Component {
         const _ID=this.props.match.params.ID;
         
 
+        
+        
         let token=localStorage.getItem('token');
         const config = {
-            headers: { Authorization: `Bearer ${token}` }
-        };
-
-        axios.post(`http://localhost:3000/team/${_ID}/invite`,
-        {
-            email
-        },
-        config).then((res)=>{
-            // this.props.history.push('/')
-            console.log('done')
-            this.forceUpdate();
-        }).catch((error)=>{
-            console.log(error)
-        })
+                headers: { Authorization: `Bearer ${token}` }
+            };
+            
+            axios.post(`http://localhost:3000/team/${_ID}/invite`,
+            {
+                    email
+                },
+                config).then((res)=>{
+                        this.props.history.push(`/team/${_ID}`)
+                        // console.log('done')
+                        // this.forceUpdate();
+                    }).catch((error)=>{
+                            console.log(error)
+                        })
+        this.props.history.push(`/team/${_ID}`)
     }
 
     render() {
@@ -39,7 +44,7 @@ class Invite extends Component {
                 </div>
 
 
-                <button type="submit" class="btn btn-primary">Add Member</button>
+                <button type="submit" class="btn btn-primary">Invite Member</button>
                 </form>
 
             </div>
@@ -47,4 +52,4 @@ class Invite extends Component {
     }
 }
 
-export default Invite;
+export default withRouter(Invite);

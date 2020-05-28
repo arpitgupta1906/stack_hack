@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import SingleTask from '../components/Tasks/SingleTask';
 import '../components/css/TeamBoard.css'
 import axios from 'axios';
+import {withRouter} from 'react-router-dom';
+
 
 class TeamBoard extends Component {
 
@@ -34,9 +36,29 @@ class TeamBoard extends Component {
         }
     }
     
+    handleleave=(event)=>{
+        const _ID=this.props.match.params.ID;
+        let token=localStorage.getItem('token');
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+        if(token){
+
+            axios.get(`http://localhost:3000/team/${_ID}/leaveteam`,
+            config
+            ).then((res)=>{
+            this.props.history.push('/tasks/all')
+            window.location.reload();
+
+            }).catch((error)=>{
+                console.log(error)
+            })
+
+        }
+    }
 
     render() {
-
+        const _ID=this.props.match.params.ID;
         const {tasks}=this.state 
 
         console.log(tasks)
@@ -54,18 +76,15 @@ class TeamBoard extends Component {
 
             <div className="fit-menu">
             <button type="button"  class="btn btn-primary add-task">
-                <a className="task-a" href="#">Add Task</a>
+                <a className="task-a" href={`/team/${_ID}/addtask`}>Add Task</a>
             </button>
             <button type="button"  class="btn btn-primary add-task">
-                <a className="task-a" href="#">Team Profile</a>
+                <a className="task-a" href={`/team/${_ID}/profile`}>Team Profile</a>
             </button>
             <button type="button"  class="btn btn-primary add-task">
-                <a className="task-a" href="#">Update Team</a>
+                <a className="task-a" href={`/team/${_ID}/invite`}>Invite Members</a>
             </button>
-            <button type="button"  class="btn btn-primary add-task">
-                <a className="task-a" href="#">Invite Members</a>
-            </button>
-            <button type="button"  class="btn btn-primary add-task">
+            <button type="button" onClick={this.handleleave} class="btn btn-primary add-task">
                 <a className="task-a" href="#">Leave Team</a>
             </button>
             </div>
@@ -76,4 +95,4 @@ class TeamBoard extends Component {
     }
 }
 
-export default TeamBoard;
+export default withRouter(TeamBoard);
