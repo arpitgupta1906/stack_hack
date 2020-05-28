@@ -12,6 +12,15 @@
 }
 
 .please{
+  position: absolute;
+  /* margin-left: 70%; */
+  right: 5%;
+  top: 8%;
+  font-size: 110%;
+  float: right;
+}
+
+.please2{
   float: right;
 }
 

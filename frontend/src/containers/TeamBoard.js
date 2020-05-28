@@ -1,44 +1,36 @@
 import React, { Component } from 'react';
 import SingleTask from '../components/Tasks/SingleTask';
 import '../components/css/TeamBoard.css'
+import axios from 'axios';
 
 class TeamBoard extends Component {
 
     constructor(props) {
         super(props);
         this.state={
-            tasks:[
-                {
-                    description:"Do this, Do that",
-                    dueDateTime: Date.now(),
-                    percentCompleted:80,
-                    team:"Major lazer",
-                    labels:"others",
-                    completed:"completed",
-                    notes:"I really want this to work",
-                    overdue:"overdue"
-                },
-                {
-                    description:"Do this, Do that",
-                    dueDateTime: Date.now(),
-                    percentCompleted:"10",
-                    team:"Major lazer",
-                    labels:"others",
-                    completed:"completed",
-                    notes:"I really want this to work",
-                    overdue:""
-                },
-                {
-                    description:"Do this, Do thatj;kdl; dijd 9d d d d d d d  d d d  dfdsd s f s d sd d sd s f s fs fs fs s  sf fs d d d d d  d d d d d d d d d dd d dd",
-                    dueDateTime: Date.now(),
-                    percentCompleted:"10",
-                    team:"Major lazer",
-                    labels:"others",
-                    completed:"completed",
-                    notes:"I really want this to work",
-                    overdue:"overdue"
-                },
-            ],
+            tasks:[],
+        }
+    }
+
+    componentDidMount(){
+        const _ID=this.props.match.params.ID;
+        let token=localStorage.getItem('token');
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+        if(token){
+
+            axios.get(`http://localhost:3000/team/${_ID}/tasks`,
+            config
+            ).then((res)=>{
+                this.setState({
+                    tasks:res.data
+                })
+
+            }).catch((error)=>{
+                console.log(error)
+            })
+
         }
     }
     
@@ -60,7 +52,7 @@ class TeamBoard extends Component {
             <div>
             <p>
 
-            <div >
+            <div className="fit-menu">
             <button type="button"  class="btn btn-primary add-task">
                 <a className="task-a" href="#">Add Task</a>
             </button>
@@ -72,6 +64,9 @@ class TeamBoard extends Component {
             </button>
             <button type="button"  class="btn btn-primary add-task">
                 <a className="task-a" href="#">Invite Members</a>
+            </button>
+            <button type="button"  class="btn btn-primary add-task">
+                <a className="task-a" href="#">Leave Team</a>
             </button>
             </div>
             </p>
