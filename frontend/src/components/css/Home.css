@@ -1,0 +1,50 @@
+.home-main{
+    /* align-items: left; */
+    /* position: absolute; */
+    text-align: center;
+    align-items: center;
+    /* margin: auto; */
+    /* position: absolute; */
+    /* margin-top: 15%;
+    margin-left: 20%; */
+    /* margin-left: 50px; */
+    /* border-width: 100px; */
+   
+    /* border-color: white; */
+    /* padding: 100px; */
+    
+    /* border-width:50px; */
+    /* width: 25%; */
+    /* left: 20%; */
+}
+
+.home-p{
+    font-size: 130%;
+    /* text-align: center; */
+}
+
+/* .home-header{
+    font-size: 500%;
+} */
+
+.home-button{
+    padding: 10px;
+    /* margin-left: 100px; */
+}
+
+div#frm *{
+    display: inline-block;
+}
+/* .frm{
+    display: inline;
+} */
+
+#outer
+{
+    width:100%;
+    text-align: center;
+}
+.inner
+{
+    display: inline-block;
+}

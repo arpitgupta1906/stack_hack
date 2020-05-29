@@ -19,7 +19,7 @@ const checkDueDate=setInterval(()=>{
               r.save()  
 
             if(r.team){
-                Team.findOne({_id:req.params.id}).then((team)=>{
+                Team.findOne({_id:r.team}).then((team)=>{
                     team.populate("members").execPopulate().then((document)=>{
                         document.members.map((member)=>{
                             const transporter=nodemailer.createTransport(authorization);

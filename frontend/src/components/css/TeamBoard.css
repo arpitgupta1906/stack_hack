@@ -42,3 +42,13 @@
     margin-bottom: 0px;
     border-radius: 0%;
 }
+
+h3{
+    /* border-color: darkcyan; */
+    /* border-width: 30px; */
+    color: turquoise;
+    width: 70%;
+    /* margin:auto; */
+    align-items: center;
+    text-align: center;
+}

@@ -11,6 +11,7 @@ class TeamBoard extends Component {
         super(props);
         this.state={
             tasks:[],
+            teamname:""
         }
     }
 
@@ -20,6 +21,9 @@ class TeamBoard extends Component {
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
+        if(!token){
+            this.props.history.push('/login')
+        }
         if(token){
 
             axios.get(`http://localhost:3000/team/${_ID}/tasks`,
@@ -29,6 +33,16 @@ class TeamBoard extends Component {
                     tasks:res.data
                 })
 
+            }).catch((error)=>{
+                console.log(error)
+            })
+                     
+            axios.get(`http://localhost:3000/team/${_ID}`,
+            config
+            ).then((res)=>{
+                this.setState({
+                    teamname:res.data.name
+                })
             }).catch((error)=>{
                 console.log(error)
             })
@@ -72,6 +86,7 @@ class TeamBoard extends Component {
 
         return (
             <div>
+            <h3>{this.state.teamname}</h3>
             <p>
 
             <div className="fit-menu">

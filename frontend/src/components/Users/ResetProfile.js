@@ -37,7 +37,7 @@ class ResetProfile extends Component {
 
     render() {
         return (
-            <div className='login'>
+            <div className='login fitting'>
         <form onSubmit={this.handleSubmit}>
             <h4>OTP will be sent to your email</h4>
             <br />
@@ -48,11 +48,9 @@ class ResetProfile extends Component {
         <button type="submit" class="btn btn-primary">Verify</button>
 
         </form>
-        
+        <br /><br />
         <a className="pointers" href="/signup">Signup?</a>
-        <a className="pointers" href="/login">
-        Login
-        </a>
+        <a className="pointers" href="/login">Login</a>
         {/* {
             this.state.check?
             <div>

@@ -157,6 +157,10 @@ router.get('/team/:id/tasks', auth,async (req,res)=>{
         match.labels=req.query.label
     }
 
+    sort['completed']=1;
+    sort['overdue']=1;
+    sort['dueDateTime']=1;
+
     if(req.query.sortBy){
         const parts=req.query.sortBy.split(':')
         sort[parts[0]]=parts[1]==='desc'?-1:1

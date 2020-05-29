@@ -21,6 +21,7 @@ const BaseRouter=()=>(
     <div>
         {/* <Route exact path='/' component={TasksList} /> */}
         <Route exact path='/' component={Home} />
+        <Route exact path='/home/' component={Home} />
         <Route exact path='/login/' component={Login} />
         <Route exact path='/signup/' component={SignUp} />
         <Route exact path='/update/' component={UpdateProfile} />
