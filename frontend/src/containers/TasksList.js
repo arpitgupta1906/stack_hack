@@ -77,9 +77,12 @@ class TasksList extends Component {
              <button type="button" class="btn btn-primary add-task-main">
                 <a className="task-a" href="/addtask">Add Task</a>
             </button>
+            {tasklist.length>0?
             <ul className="list-group">
                 {tasklist}
             </ul>
+            :<h4 class="notask"> No Tasks Yet</h4>
+            }
             </span>
             :
             <div> Unauthorized Access</div>

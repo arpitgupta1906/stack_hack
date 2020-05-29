@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import '../css/Login.css'
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
+import '../css/AddTask.css';
 
 class ResetProfile extends Component {
 
     constructor(props) {
         super(props);
         this.state={
-            check: false
+            check: false,
+            error:""
         }
     }
     
@@ -16,7 +18,7 @@ class ResetProfile extends Component {
     handleSubmit=async (event)=>{
         event.preventDefault();
         const email=event.target.email.value;
-        // console.log(email)
+        
         try{
 
             const res=await axios.patch('http://localhost:3000/resetpassword',{
@@ -27,11 +29,16 @@ class ResetProfile extends Component {
                 // console.log(res.data._id);
             }
             else{
-                console.log('error')
+                this.setState({
+                    error:"Account does not exist"
+                })
+                // console.log('error')
             }
         }
         catch(e){
-            console.log(e)
+            this.setState({
+                error:"Account does not exist"
+            })
         }
     }
 
@@ -48,9 +55,9 @@ class ResetProfile extends Component {
         <button type="submit" class="btn btn-primary">Verify</button>
 
         </form>
-        <br /><br />
-        <a className="pointers" href="/signup">Signup?</a>
-        <a className="pointers" href="/login">Login</a>
+        <br />
+        <a className="pointers join" href="/signup">Signup?</a>
+        <a className="pointers join" href="/login">Login</a>
         {/* {
             this.state.check?
             <div>
@@ -60,6 +67,15 @@ class ResetProfile extends Component {
             </div>
             :""
         } */}
+        <p>
+
+        {this.state.error? 
+        <span className="error"> 
+        {this.state.error}
+        </span>
+        :""
+        }
+        </p>
             </div>
         );
     }

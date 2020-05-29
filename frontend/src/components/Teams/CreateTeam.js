@@ -6,6 +6,14 @@ import {withRouter} from 'react-router-dom';
 
 class CreateTeam extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state={
+            error:""
+        }
+    }
+    
+
     handleSubmit=(event)=>{
         event.preventDefault();
         const name=event.target.name.value;
@@ -26,10 +34,13 @@ class CreateTeam extends Component {
             this.props.history.push(`/team/${res.data._id}`)
             window.location.reload();
         }).catch((error)=>{
-            console.log(error)
+            this.setState({
+                error:"A team with the same name already exists"
+            })
+            // console.log(error)
         })
 
-        console.log(name);
+        // console.log(name);
     }
 
 
@@ -49,9 +60,14 @@ class CreateTeam extends Component {
                     <input name="agenda" class="form-control" placeholder="Add agenda" id="agenda" />
                 </div>
 
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary join">Create</button>
                 </form>
-
+                {this.state.error? 
+                <span className="error"> 
+                {this.state.error}
+                </span>
+                :""
+                }
             </div>
         );
     }

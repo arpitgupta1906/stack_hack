@@ -6,8 +6,26 @@ li{
     width: 70%;
     padding: 1%;
     /* height: 50%; */
+
     /* background-color: grey; */
     /* height: ; */
+    /* margin-left: -30%; */
+    min-width: 100px;
+    max-width: 100%;
+}
+
+.singletask p{
+    margin-bottom: 10px;
+    /* padding: none; */
+}
+
+@media screen and (max-width: 768px) {
+    #stask { width:100%; margin:0;}
+    /* #secondary { width:100%; margin:0; border:none; } */
+}
+
+.singletask li{
+    /* background-color: lightslategray; */
 }
 
 .task-a{

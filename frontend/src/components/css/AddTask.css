@@ -22,3 +22,16 @@ select{
     width: 60%;
     height: 40px;
 }
+
+.error{
+    color: red;
+    /* width: 70%; */
+    /* margin-left: 35%; */
+    /* margin-bottom: -35%; */
+    /* text-align: center; */
+    /* margin-top: 100%; */
+}
+
+.join{
+    margin-bottom: 20px;
+}

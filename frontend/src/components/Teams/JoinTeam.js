@@ -37,11 +37,11 @@ class JoinTeam extends Component {
             this.props.history.push(`/team/${res.data._id}`)
             window.location.reload();
             // console.log(res.data)
-        }).catch((error)=>{
-            // this.setState({
-            //     error:error
-            // })
-            console.log(error)
+        }).catch((e)=>{
+            this.setState({
+                error:"*Invalid team name or password"
+            })
+            console.log(e)
         })
 
 
@@ -64,10 +64,11 @@ class JoinTeam extends Component {
                     <input name="code" class="form-control" placeholder="Enter Invite Code" id="code" />
                 </div>
 
-                <button type="submit" class="btn btn-primary">Join Team</button>
+                <button type="submit" class="btn btn-primary join">Join Team</button>
                 </form>
+                
                 {this.state.error? 
-                <span> 
+                <span className="error"> 
                 {this.state.error}
                 </span>
                 :""
@@ -77,4 +78,4 @@ class JoinTeam extends Component {
     }
 }
 
-export default JoinTeam;
+export default withRouter(JoinTeam);
