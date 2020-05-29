@@ -15,12 +15,12 @@ class TasksList extends Component {
 
     componentDidMount(){
 
-        const _ID=this.props.match.params.LABEL;
-        console.log(_ID)
         let token=localStorage.getItem('token');
         if(!token){
-            this.props.history.push('/');
+            this.props.history.push('/home');
         }
+        const _ID=this.props.match.params.LABEL;
+        console.log(_ID)
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
