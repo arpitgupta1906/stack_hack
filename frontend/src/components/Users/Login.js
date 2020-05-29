@@ -29,7 +29,7 @@ class Login extends Component {
 
     render() {
         return (
-            <div className='login'>
+            <div className='login fitting'>
                  <form onSubmit={this.handleSubmit}>
             <div class="form-group">
                 <label for="email">Email address:</label>
@@ -38,14 +38,15 @@ class Login extends Component {
             <div class="form-group">
                 <label for="pwd">Password:</label>
                 <input name='password' type="password" class="form-control" placeholder="Enter password" id="pwd" />
-            </div>
-            <div className="form-group">
-            <a href="/signup"> Sign Up?</a>
-            <a href="/forgotpassword"> Forgot Password?</a>
-            </div>
-            
             <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
             </form>
+            {/* <br />  */}
+            {/* <div className="form-group"> */}
+            <a className="pointers" href="/signup"> Sign Up?</a>
+            <a className="pointers" href="/forgotpassword"> Forgot Password?</a>
+            {/* </div> */}
+            
             </div>
         );
     }

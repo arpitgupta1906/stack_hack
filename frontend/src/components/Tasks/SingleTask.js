@@ -6,6 +6,13 @@ import {withRouter} from 'react-router-dom';
 
 class SingleTask extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state={
+            team:""
+        }
+    }
+    
    
     markasdone=async (event)=>{
         // event.preventDefault();
@@ -20,8 +27,8 @@ class SingleTask extends Component {
         
         try{
             const res=await axios.patch(`http://localhost:3000/tasks/${_ID}/completed`,{},config)
-            console.log("Done")
-            this.forceUpdate()
+            // console.log("Done")
+            window.location.reload();
         }
         catch(e){
             console.log(e)
@@ -71,10 +78,9 @@ class SingleTask extends Component {
         
     }
 
-    render() {
-        const {task}=this.props
-        task.dueDateTime=new Date(task.dueDateTime)
-
+    componentDidMount(){
+        let {task}=this.props
+        
         if(task.team){
             
             const _ID=this.props.task.team;
@@ -85,15 +91,20 @@ class SingleTask extends Component {
             axios.get(`http://localhost:3000/team/${_ID}`,
             config
             ).then((res)=>{
-                task.teamname= res.data.name;
-                console.log(task.teamname)
+                this.setState({
+                    team:res.data.name
+                })
             }).catch((error)=>{
                 console.log(error)
             })
         }
 
-        console.log(task.teamname)
-        const {tn}=task
+    }
+
+    render() {
+        let {task}=this.props
+        task.dueDateTime=new Date(task.dueDateTime)
+
         return (
             <div className="singletask">
 
@@ -127,11 +138,12 @@ class SingleTask extends Component {
                 : ""
                 }
                  </p>
+                
                 <p className="content">{task.description}</p>
                 <p className="content">{task.notes}</p>
                 {
-                    task.team?
-                <p className="content">Team:{tn}</p>
+                    this.state.team.length>0?
+                <p className="content">Team:  {this.state.team}</p>
                 :""
                 }
                 <p>

@@ -82,7 +82,7 @@ class SignUp extends Component {
     render() {
         let errors=this.state;
     return (
-    <div className='login'>
+    <div className='login fitting'>
         <form onSubmit={this.handleSubmit}>
         <div class="form-group">
             <label for="name">Username:</label>
@@ -107,7 +107,7 @@ class SignUp extends Component {
         </div>
         <button type="submit" class="btn btn-primary">SignUp</button>
         </form>
-        <a href="/login"> Login?</a>
+        <a className="pointers" href="/login"> Login?</a>
 
     </div>
     );

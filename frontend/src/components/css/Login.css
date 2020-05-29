@@ -12,8 +12,17 @@ a{
 
 .pointers{
     color: cornsilk;
-    margin-right: 5%;
+    /* margin-right: 5%; */
     margin-top: 5px;
     padding: 5px;
     padding-top: 50px;
+    
+}
+
+.pointers a{
+    text-decoration: wavy;
+}
+
+.fitting{
+    margin-top: auto;
 }

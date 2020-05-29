@@ -27,7 +27,7 @@ class ResetProfile extends Component {
 
     render() {
         return (
-            <div className='login'>
+            <div className='login fitting'>
         <form onSubmit={this.handleSubmit}>
         <div className="form-group">
             <label for="code">Otp Code:</label>
