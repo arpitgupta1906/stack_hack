@@ -39,7 +39,8 @@ class SignUp extends Component {
                 localStorage.setItem('token',res.data.token)
                 localStorage.setItem('user',JSON.stringify(res.data.user))
                 this.props.history.push('/tasks/all');
-                console.log(res.data)
+                window.location.reload()
+                // console.log(res.data)
             })
         }
         else{

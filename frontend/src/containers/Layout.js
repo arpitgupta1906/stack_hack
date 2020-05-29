@@ -18,8 +18,8 @@ class Layout extends Component {
         // if(!localStorage.getItem('token') || !this.state.isAuthenticated){
         //     this.props.history.push('/home');
         // }
-        
         if(localStorage.getItem('token')){
+            console.log(localStorage.getItem('token'))
             this.setState({
                 isAuthenticated:true,
                 teams:[],
@@ -41,6 +41,11 @@ class Layout extends Component {
                 })
                 // console.log(this.state.teams)
             }).catch((error)=>{
+                this.setState({
+                    isAuthenticated:false
+                })
+                localStorage.removeItem("token");
+                // this.props.history.push('/home')
                 console.log(error)
             })
 
@@ -53,18 +58,21 @@ class Layout extends Component {
             headers: { Authorization: `Bearer ${token}` }
         };
         
-        axios.post('http://localhost:8080/users/logout',
+        axios.post('http://localhost:3000/users/logout',
         {
-            token
         },
         config
         ).then((res)=>{
             this.setState({
-                isAuthenticated:true
+                isAuthenticated:false
             })
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            this.props.history.push('/');
+            console.log(this.state.isAuthenticated)
+            localStorage.setItem('token',"");
+            localStorage.setItem('user',"");
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            this.props.history.push('/home');
+            window.location.reload()
         }).catch((error)=>{
             console.log(error);
         })
@@ -101,7 +109,7 @@ class Layout extends Component {
                 <nav className="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
                 <ul className="navbar-nav">
                     <li className="nav-item active">
-                    <a className="navbar-brand" href="#">ToDoIst</a>
+                    <a className="navbar-brand" href="/tasks/all">ToDoIst</a>
                     </li>
                     <li className="nav-item">
                     <a className="navbar-brand" href="#">                  </a>
@@ -120,10 +128,10 @@ class Layout extends Component {
                 <span>
 
                     <li className="nav-item please2 text-nowrap">
-                    <a className="nav-link" onClick={this.clickLogout} href="#">Logout</a>
+                    <a className="nav-link" onClick={this.clickLogout} href="/home">Logout</a>
                     </li>
                     <li className="nav-item please2 fresh-start">
-                    <a className="nav-link" onClick={this.clickreset} href="#">Fresh-Start</a>
+                    <a className="nav-link" onClick={this.clickreset} href="/tasks/all">Fresh-Start</a>
                     </li>
                 </span>
                 :

@@ -15,11 +15,12 @@ class Login extends Component {
             email: email,
             password: password
         }).then(res=>{
-            console.log(res.data.token)
-            console.log(res.data.user)
+            // console.log(res.data.token)
+            // console.log(res.data.user)
             localStorage.setItem('token',res.data.token)
             localStorage.setItem('user',JSON.stringify(res.data.user))
-            this.props.history.push('/tasks/all')
+            this.props.history.push('/tasks')
+            window.location.reload()
             // console.log(localStorage.getItem('token'))
         })
         .catch(error=>console.error(error));

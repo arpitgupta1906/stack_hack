@@ -104,6 +104,12 @@ class TeamBoard extends Component {
             </button>
             </div>
             </p>
+            {tasklist.length>0?
+            <ul className="list-group">
+                {tasklist}
+            </ul>
+            :<h4 class="notask"> No Tasks Yet</h4>
+            }
                 {tasklist}
             </div>
         );

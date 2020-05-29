@@ -2,9 +2,18 @@ import React, { Component } from 'react';
 import '../css/Login.css'
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
+import '../css/AddTask.css';
 
 class ResetProfile extends Component {
     
+    constructor(props) {
+        super(props);
+        this.state={
+            error:""
+        }
+    }
+    
+
     handleSubmit=async (event)=>{
         event.preventDefault();
         const _ID=this.props.match.params.ID;
@@ -20,7 +29,10 @@ class ResetProfile extends Component {
             this.props.push('/login')
         }
         catch(e){
-            console.log(e)
+            this.setState({
+                error:"Invalid OTP code"
+            })
+            // console.log(e)
         }
     }
 
@@ -37,10 +49,15 @@ class ResetProfile extends Component {
                 <label for="pwd">New Password:</label>
                 <input name='password' type="password" class="form-control" placeholder="Enter password" id="pwd" />
         </div>
-        <button type="submit" class="btn btn-primary">Reset</button>
+        <button type="submit" class="btn btn-primary join">Reset</button>
 
         </form>
-        
+        {this.state.error? 
+                <span className="error"> 
+                {this.state.error}
+                </span>
+                :""
+                }
         </div>
         );
     }

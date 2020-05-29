@@ -11,7 +11,8 @@ class AddTask extends Component {
     constructor(props) {
         super(props);
         this.state={
-            defaultdate:new Date()
+            defaultdate:new Date(),
+            error:""
         }
     }
     
@@ -40,11 +41,14 @@ class AddTask extends Component {
                 dueDateTime:duedatetime,
                 percentCompleted
             }, config)
-            this.props.history.push('/tasks');
-            this.forceUpdate();
+            this.props.history.push('/tasks/all');
+            window.location.reload()
         }
         catch(e){
-            console.log(e);
+            this.setState({
+                error:"Unable to create task, please try again"
+            })
+            // console.log(e);
         }
 
         // console.log(percentCompleted);
@@ -57,16 +61,6 @@ class AddTask extends Component {
             <div className="task">
                 <form onSubmit={this.handleSubmit}>
                 <header><p>Add Task</p></header>
-                {/* {
-                    team.length>0?
-
-                <div class="form-group">
-                    <label for="team">Team:</label>
-                    <input type="name"   class="form-control" value={team} id="team" readOnly />
-                </div>
-                    :
-                    ""
-                } */}
                 <div class="form-group">
                     <label for="description">Description:</label>
                     <input name="description" class="form-control" placeholder="Task Description" id="description" />
@@ -95,9 +89,14 @@ class AddTask extends Component {
                 <label for="customRange3">Percentage Completed:</label>
                 <input type="range"  className="form-control" defaultValue="0" class="custom-range" name="percentCompleted" min="0" max="100" step="1" id="customRange3" />
                 </div>
-                <button type="submit" class="btn btn-primary">+ Add Task</button>
+                <button type="submit" class="btn btn-primary join">+ Add Task</button>
                 </form>
-
+                {this.state.error? 
+                <span className="error"> 
+                {this.state.error}
+                </span>
+                :""
+                }
             </div>
         );
     }

@@ -78,7 +78,7 @@ class TeamProfile extends Component {
          axios.patch(`http://localhost:3000/team/${_ID}/changeinvite`,
          {},
          config).then((res)=>{             
-             console.log(res.data.invitecode)
+            //  console.log(res.data.invitecode)
              window.location.reload();
          }).catch((error)=>{
              console.log(error)
@@ -95,7 +95,7 @@ class TeamProfile extends Component {
             </div>
         })
 
-        console.log(memberlist)
+        // console.log(memberlist)
 
         return (
             <div className="task">

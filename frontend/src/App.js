@@ -3,7 +3,6 @@ import './App.css';
 import Layout from './containers/Layout';
 import {BrowserRouter as Router} from 'react-router-dom';
 import BaseRouter from './routes';
-import Testbar from './Testbar';
 import LayoutCopy from './containers/LayoutCopy';
 
 function App() {
@@ -11,11 +10,10 @@ function App() {
     <div className="App">
     <Router>
 
-      <LayoutCopy>
+      <Layout>
         <BaseRouter />
-      </LayoutCopy>
+      </Layout>
     </Router>
-    {/* <Testbar /> */}
     </div>
   );
 }
