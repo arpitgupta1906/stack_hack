@@ -20,7 +20,7 @@ class TasksList extends Component {
             this.props.history.push('/home');
         }
         const _ID=this.props.match.params.LABEL;
-        console.log(_ID)
+        // console.log(_ID)
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
@@ -32,10 +32,10 @@ class TasksList extends Component {
             })
             let url;
             if(_ID==='all' || !_ID){
-                url='http://localhost:3000/tasks?sortBy=completed:asc'
+                url='http://localhost:3000/tasks?completed=false&sortBy=completed:asc'
             }
             else if(_ID==='archived'){
-                url='http://localhost:3000/tasks?completed=true&&sortBy=completed:asc'
+                url='http://localhost:3000/tasks?completed=true&&sortBy=dueDateTime:desc'
             }
             else if(_ID==='overdue'){
                 url='http://localhost:3000/overdue'
@@ -52,7 +52,8 @@ class TasksList extends Component {
                 })
                 // console.log(res.data)
             }).catch((error)=>{
-                console.log(error)
+                alert(error)
+                // console.log(error)
             })
 
         }

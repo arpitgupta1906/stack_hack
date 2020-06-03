@@ -8,7 +8,45 @@
     /* font-size: calc(10px + 2vmin); */
     color: white;
     margin: auto;
+    margin-top: 20px;
+    margin-left: 5%;
     /* margin-top: 60px; */
+}
+
+.navbar{
+  height: 70px;
+}
+
+@media only screen and (max-width: 800px) {
+  .my-content {
+    margin-left: -20%;
+  }
+  /* .singletask {background-color: red;} */
+}
+
+@media only screen and (max-width: 480px) {
+  .my-content {
+    margin-left: -40%;
+  }
+  /* .singletask {background-color: red;} */
+}
+
+
+.username{
+  /* position: relative; */
+  /* margin-left: 20px; */
+  /* margin-top: 0px; */
+  /* float:; */
+}
+
+/* @media screen and (max-height: 450px) {
+  .my-content {margin-left: 0px;}
+  
+} */
+
+.please2 a:hover {
+  /* color: #f1f1f1; */
+  color: black;
 }
 
 .please{
@@ -37,7 +75,8 @@
 
 /* The sidebar menu */
 .sidenav {
-    margin-top: 2.6%;
+    margin-top: 50px;
+    /* margin-top: 2.6%; */
     height: 100%;
      /* Full-height: remove this if you want "auto" height */
     /* width: 200px; */
@@ -68,9 +107,11 @@
   
   /* When you mouse over the navigation links, change their color */
   .sidenav a:hover {
-    color: #f1f1f1;
+    /* color: #f1f1f1; */
+    color: white;
   }
   
+
   
   /* Style page content */
   .main {

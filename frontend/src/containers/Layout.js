@@ -116,7 +116,7 @@ class Layout extends Component {
                     </li>
                     {
                         this.state.isAuthenticated?
-                    <li className="nav-item">
+                    <li className="nav-item active">
                     <a className="navbar-brand" href="/profile">@{this.state.user}</a>
                     </li>
                         :""
@@ -128,10 +128,10 @@ class Layout extends Component {
                 <span>
 
                     <li className="nav-item please2 text-nowrap">
-                    <a className="nav-link" onClick={this.clickLogout} href="/home">Logout</a>
+                    <a className="navbar-brand" onClick={this.clickLogout} href="/home">Logout</a>
                     </li>
                     <li className="nav-item please2 fresh-start">
-                    <a className="nav-link" onClick={this.clickreset} href="/tasks/all">Fresh-Start</a>
+                    <a className="navbar-brand" onClick={this.clickreset} href="/tasks/all">Fresh-Start</a>
                     </li>
                 </span>
                 :
