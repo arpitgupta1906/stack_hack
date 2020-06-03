@@ -52,8 +52,8 @@ class TasksList extends Component {
                 })
                 // console.log(res.data)
             }).catch((error)=>{
-                alert(error)
-                // console.log(error)
+                // alert(error)
+                console.log(error)
             })
 
         }
