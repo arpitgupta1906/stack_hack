@@ -82,10 +82,11 @@ class EditTask extends Component {
 
 
     render() {
-        // console.log(this.state.task.percentCompleted)
         const {task}=this.state;
+        // console.log(this.state.task.team)
         if(this.state.task.team){
-            const _ID=this.state.task._id;
+            const _ID=this.state.task._id
+            // console.log(_ID)
             let token=localStorage.getItem('token');
             const config = {
                 headers: { Authorization: `Bearer ${token}` }
@@ -129,7 +130,7 @@ class EditTask extends Component {
                 <div className="form-group">
                 <label  for="duedatetime">Choose a time for your appointment:</label>
                 <input className="form-control" type="datetime-local" id="duedatetime"
-                name="duedatetime"  defaultValue={this.state.task.duedatetime}
+                name="duedatetime"  defaultValue={this.state.task.dueDateTime}
                  />
 
                 <label  for="labels">Add task label:</label>
@@ -145,7 +146,7 @@ class EditTask extends Component {
                 </div>
                 <div className="form-group">
                 <label for="customRange3">Percentage Completed:</label>
-                <input type="range"  className="form-control" defaultValue={task.percentCompleted} class="custom-range" name="percentCompleted" min="0" max="100" step="1" id="customRange3" />
+                <input type="range"  className="form-control" defaultValue={task.percentCompleted} defaultValue={task.percentCompleted} class="custom-range" name="percentCompleted" min="0" max="100" step="1" id="customRange3" />
                 </div>
                 <button type="submit" class="btn btn-primary">Add Task</button>
                 </form>

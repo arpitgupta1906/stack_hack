@@ -19,7 +19,7 @@ class Layout extends Component {
         //     this.props.history.push('/home');
         // }
         if(localStorage.getItem('token')){
-            console.log(localStorage.getItem('token'))
+            // console.log(localStorage.getItem('token'))
             this.setState({
                 isAuthenticated:true,
                 teams:[],
@@ -46,7 +46,7 @@ class Layout extends Component {
                 })
                 localStorage.removeItem("token");
                 // this.props.history.push('/home')
-                alert(error)
+                // alert(error)
             })
 
         }

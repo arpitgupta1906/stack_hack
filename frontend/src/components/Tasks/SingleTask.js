@@ -148,7 +148,7 @@ class SingleTask extends Component {
                 }
                 <p>
                     
-                <label for="customRange3">Percentage Completed:</label>
+                <label for="customRange3">Percentage Completed: </label>
                 <input type="range" onChange={this.handlePercent} defaultValue={task.percentCompleted} class="custom-range" name="percentCompleted" min="0" max="100" step="1" id="percentCompleted" />
 
                 </p>
