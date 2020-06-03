@@ -79,13 +79,14 @@ router.get('/tasks', auth,async (req,res)=>{
     if(req.query.label){
         match.labels=req.query.label
     }
-
+    
+    sort['dueDateTime']=1;
+    
     if(req.query.sortBy){
         const parts=req.query.sortBy.split(':')
         sort[parts[0]]=parts[1]==='desc'?-1:1
     }
 
-    sort['dueDateTime']=1;
 
     try{
         // const task=await Task.find({owner:req.user._id});

@@ -10,9 +10,11 @@ li{
     /* background-color: grey; */
     /* height: ; */
     /* margin-left: -30%; */
+    /* position: relative; */
     min-width: 100px;
     max-width: 100%;
     margin-right: 10%;
+    /* background-color: rgb(131, 174, 238); */
     
 }
 
@@ -21,10 +23,20 @@ li{
     /* padding: none; */
 }
 
+/* .singletask li{
+    background-color: rgb(23, 61, 68);
+
+} */
+
 @media screen and (max-width: 768px) {
     #stask { width:100%; margin:0;}
     /* #secondary { width:100%; margin:0; border:none; } */
 }
+
+@media only screen and (max-width: 2000px) {
+    
+    /* .singletask {background-color: red;} */
+  }
 
 .singletask li{
     /* background-color: lightslategray; */
