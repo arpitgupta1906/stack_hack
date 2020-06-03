@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import '../components/css/Home.css';
+import {withRouter} from 'react-router-dom';
 
 class Home extends Component {
+
+    componentDidMount(){
+        const token=localStorage.getItem('token');
+
+        if(token){
+            this.props.history.push('/tasks/all/')
+        }
+    }
+
     render() {
         return (
             <div className="home-main">
@@ -23,4 +33,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default withRouter(Home);
