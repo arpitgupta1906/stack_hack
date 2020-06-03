@@ -21,6 +21,10 @@ app.use(teamRouter)
 
 require('./middleware/checkDueDate')
 
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('frontend/build'));
+}
+
 server.listen(PORT,()=>{
     console.log("server is up on port",PORT);
 })
