@@ -18,7 +18,7 @@ class Invite extends Component {
                 headers: { Authorization: `Bearer ${token}` }
             };
             
-            axios.post(`http://localhost:3000/team/${_ID}/invite`,
+            axios.post(`/team/${_ID}/invite`,
             {
                     email
                 },

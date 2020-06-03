@@ -11,7 +11,7 @@ class Login extends Component {
         const email=event.target.elements.email.value;
         console.log(email)
 
-        axios.post('http://localhost:3000/users/login/',{
+        axios.post('/users/login/',{
             email: email,
             password: password
         }).then(res=>{

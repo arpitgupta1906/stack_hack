@@ -11,7 +11,7 @@ class Home extends Component {
                <div>
                <button className="btn btn-primary home-button"><a  href="/login">Login</a></button>
                <br />
-               <button className="btn btn-primary home-button"><a  href="/login">SignUp</a></button>
+               <button className="btn btn-primary home-button"><a  href="/signup">SignUp</a></button>
                </div>
                 {/* <div id="outer">
                 <div class="inner"><button className="btn btn-primary home-button"><a  href="/login">Login</a></button></div>

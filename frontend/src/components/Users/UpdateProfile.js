@@ -47,7 +47,7 @@ class UpdateProfile extends Component {
             const config = {
                 headers: { Authorization: `Bearer ${token}` }
             };
-            axios.patch('http://localhost:3000/users/update/',
+            axios.patch('/users/update/',
             data,
             config
             ).then((res)=>{

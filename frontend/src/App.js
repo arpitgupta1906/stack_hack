@@ -3,7 +3,6 @@ import './App.css';
 import Layout from './containers/Layout';
 import {BrowserRouter as Router} from 'react-router-dom';
 import BaseRouter from './routes';
-import LayoutCopy from './containers/LayoutCopy';
 
 function App() {
   return (
@@ -20,3 +19,4 @@ function App() {
 
 export default App;
 
+///////////double tasks are created in teams

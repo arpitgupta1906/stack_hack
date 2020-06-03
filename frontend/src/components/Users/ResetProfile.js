@@ -21,7 +21,7 @@ class ResetProfile extends Component {
         
         try{
 
-            const res=await axios.patch('http://localhost:3000/resetpassword',{
+            const res=await axios.patch('/resetpassword',{
                 email
             })
             if(res.data._id){

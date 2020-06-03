@@ -21,7 +21,7 @@ class UserProfile extends Component {
             this.setState({
                 isAuthenticated: true
             })
-            axios.get('http://localhost:3000/users/profile/',
+            axios.get('/users/profile/',
             config
             ).then((res)=>{
                 this.setState({

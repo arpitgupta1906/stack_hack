@@ -28,7 +28,7 @@ class JoinTeam extends Component {
         };
         
 
-        axios.post(`http://localhost:3000/jointeam`,
+        axios.post(`/jointeam`,
         {
             name,
             invitecode: parseInt(code)

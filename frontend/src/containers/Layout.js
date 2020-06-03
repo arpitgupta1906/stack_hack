@@ -33,7 +33,7 @@ class Layout extends Component {
             const config = {
                 headers: { Authorization: `Bearer ${token}` }
             };
-            axios.get('http://localhost:3000/users/teams',
+            axios.get('/users/teams',
             config
             ).then((res)=>{
                 this.setState({
@@ -46,7 +46,7 @@ class Layout extends Component {
                 })
                 localStorage.removeItem("token");
                 // this.props.history.push('/home')
-                console.log(error)
+                alert(error)
             })
 
         }
@@ -58,7 +58,7 @@ class Layout extends Component {
             headers: { Authorization: `Bearer ${token}` }
         };
         
-        axios.post('http://localhost:3000/users/logout',
+        axios.post(`/users/logout`,
         {
         },
         config
@@ -84,7 +84,7 @@ class Layout extends Component {
             headers: { Authorization: `Bearer ${token}` }
         };
 
-        axios.get('http://localhost:3000/users/freshstart',
+        axios.get('/users/freshstart',
             config
             ).then((res)=>{
                 console.log("all tasks deleted")
