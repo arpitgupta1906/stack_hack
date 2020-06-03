@@ -32,16 +32,16 @@ class TasksList extends Component {
             })
             let url;
             if(_ID==='all' || !_ID){
-                url='http://localhost:3000/tasks?completed=false&sortBy=completed:asc'
+                url='/tasks?completed=false&sortBy=completed:asc'
             }
             else if(_ID==='archived'){
-                url='http://localhost:3000/tasks?completed=true&&sortBy=dueDateTime:desc'
+                url='/tasks?completed=true&&sortBy=dueDateTime:desc'
             }
             else if(_ID==='overdue'){
-                url='http://localhost:3000/overdue'
+                url='/overdue'
             }
             else{    
-            url=`http://localhost:3000/tasks?labels=${_ID}&sortBy=completed:asc`
+            url=`/tasks?labels=${_ID}&completed=false`
             }
 
             axios.get(url,

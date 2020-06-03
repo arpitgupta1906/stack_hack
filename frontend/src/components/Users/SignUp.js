@@ -31,7 +31,7 @@ class SignUp extends Component {
 
         if(this.validateForm(this.state.errors) && password===password2 && password.length>6){
             
-            axios.post('http://localhost:3000/users/signup',{
+            axios.post('/users/signup',{
                 email,
                 password,
                 name

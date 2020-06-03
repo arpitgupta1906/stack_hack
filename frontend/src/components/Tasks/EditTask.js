@@ -15,27 +15,29 @@ class EditTask extends Component {
     
     componentDidMount(){
         const _ID=this.props.match.params.ID;
+        // console.log(_ID)
         let token=localStorage.getItem('token');
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
         if(token){
 
-            axios.get(`http://localhost:3000/tasks/${_ID}`,
+            axios.get(`/tasks/${_ID}`,
             config
             ).then((res)=>{
                 this.setState({
                     task:res.data
                 })
 
+                console.log(this.state)
                 const d=this.state.duedatetime;
                 d=new Date(d);
 
-                this.setState({
-                    task:{
-                        duedatetime:d
-                    }
-                })
+                // this.setState({
+                //     task:{
+                //         duedatetime:d
+                //     }
+                // })
                 // console.log(res.data)
             }).catch((error)=>{
                 console.log(error)
@@ -65,7 +67,7 @@ class EditTask extends Component {
             headers: { Authorization: `Bearer ${token}` }
         };
 
-        axios.patch(`http://localhost:3000/tasks/${_ID}`,
+        axios.patch(`/tasks/${_ID}`,
         data,
         config).then((res)=>{
             // this.props.history.push('/')
@@ -75,18 +77,20 @@ class EditTask extends Component {
             console.log(error)
         })
 
-        console.log(percentCompleted);
+        // console.log(percentCompleted);
     }
 
+
     render() {
+        // console.log(this.state.task.percentCompleted)
         const {task}=this.state;
-        if(task.team){
-            const _ID=this.props.task._id;
+        if(this.state.task.team){
+            const _ID=this.state.task._id;
             let token=localStorage.getItem('token');
             const config = {
                 headers: { Authorization: `Bearer ${token}` }
             };            
-            axios.get(`http://localhost:3000/team/${_ID}`,
+            axios.get(`/team/${_ID}`,
             config
             ).then((res)=>{
                 task.teamname= res.data.name;
@@ -94,13 +98,15 @@ class EditTask extends Component {
                 console.log(error)
             })
         }
+
+        console.log(task)
         return (
             <div className="task">
                 <form onSubmit={this.handleSubmit}>
                 <header><p>Add Task</p></header>
                 
                 {
-                    task.team?
+                    task.teamname?
 
                 <div class="form-group">
                     <label for="team">Team:</label>
@@ -123,11 +129,14 @@ class EditTask extends Component {
                 <div className="form-group">
                 <label  for="duedatetime">Choose a time for your appointment:</label>
                 <input className="form-control" type="datetime-local" id="duedatetime"
-                name="duedatetime"  defaultValue={task.duedatetime}
+                name="duedatetime"  defaultValue={this.state.task.duedatetime}
                  />
 
                 <label  for="labels">Add task label:</label>
-                <select name="labels" defaultValue={task.labels}>
+                <select name="labels" defaultValue={this.state.task.labels}>
+                <option value={this.state.task.labels} selected disabled hidden> 
+                    {this.state.task.labels}
+                </option> 
                     <option name="Personal"> Personal</option>
                     <option name="Work"> Work</option>
                     <option name="Shopping"> Shopping</option>

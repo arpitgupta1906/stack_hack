@@ -26,7 +26,7 @@ class TeamBoard extends Component {
         }
         if(token){
 
-            axios.get(`http://localhost:3000/team/${_ID}/tasks`,
+            axios.get(`/team/${_ID}/tasks`,
             config
             ).then((res)=>{
                 this.setState({
@@ -37,7 +37,7 @@ class TeamBoard extends Component {
                 console.log(error)
             })
                      
-            axios.get(`http://localhost:3000/team/${_ID}`,
+            axios.get(`/team/${_ID}`,
             config
             ).then((res)=>{
                 this.setState({
@@ -58,7 +58,7 @@ class TeamBoard extends Component {
         };
         if(token){
 
-            axios.get(`http://localhost:3000/team/${_ID}/leaveteam`,
+            axios.get(`/team/${_ID}/leaveteam`,
             config
             ).then((res)=>{
             this.props.history.push('/tasks/all')
@@ -86,7 +86,7 @@ class TeamBoard extends Component {
 
         return (
             <div>
-            <h3>{this.state.teamname}</h3>
+            <h3>Team: &ensp;  {this.state.teamname}</h3>
             <p>
 
             <div className="fit-menu">
@@ -110,7 +110,6 @@ class TeamBoard extends Component {
             </ul>
             :<h4 class="notask"> No Tasks Yet</h4>
             }
-                {tasklist}
             </div>
         );
     }

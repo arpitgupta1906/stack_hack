@@ -25,7 +25,7 @@ class CreateTeam extends Component {
         };
         
 
-        axios.post(`http://localhost:3000/createteam`,
+        axios.post(`/createteam`,
         {
             name,
             agenda

@@ -22,7 +22,7 @@ class ResetProfile extends Component {
        
         try{
 
-            const user=await axios.post(`http://localhost:3000/resetcode/${_ID}`,{
+            const user=await axios.post(`/resetcode/${_ID}`,{
                 resetcode:code,
                 password
             })

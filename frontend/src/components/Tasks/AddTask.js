@@ -34,7 +34,7 @@ class AddTask extends Component {
 
         try{
 
-            const tasks=await axios.post('http://localhost:3000/tasks/add',{
+            const tasks=await axios.post('/tasks/add',{
                 description,
                 notes,
                 labels,
