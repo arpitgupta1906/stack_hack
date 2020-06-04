@@ -21,7 +21,7 @@ class UserProfile extends Component {
             this.setState({
                 isAuthenticated: true
             })
-            axios.get('/users/profile/',
+            axios.get('https://hashlist.herokuapp.com/users/profile/',
             config
             ).then((res)=>{
                 this.setState({

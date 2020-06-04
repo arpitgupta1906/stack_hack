@@ -26,7 +26,7 @@ class SingleTask extends Component {
         };
         
         try{
-            const res=await axios.patch(`/tasks/${_ID}/completed`,{},config)
+            const res=await axios.patch(`https://hashlist.herokuapp.com/tasks/${_ID}/completed`,{},config)
             // console.log("Done")
             window.location.reload();
         }
@@ -44,7 +44,7 @@ class SingleTask extends Component {
         };
 
         try{
-            const res=await axios.delete(`/tasks/${_ID}`,config)
+            const res=await axios.delete(`https://hashlist.herokuapp.com/tasks/${_ID}`,config)
             // console.log("deleted")
             // this.props.history.push('/tasks')
             window.location.reload();
@@ -64,7 +64,7 @@ class SingleTask extends Component {
             headers: { Authorization: `Bearer ${token}` }
         };
 
-        axios.patch(`/tasks/${_ID}`,
+        axios.patch(`https://hashlist.herokuapp.com/tasks/${_ID}`,
         {
             percentCompleted:percentCompleted
         },
@@ -88,7 +88,7 @@ class SingleTask extends Component {
             const config = {
                 headers: { Authorization: `Bearer ${token}` }
             };            
-            axios.get(`/team/${_ID}`,
+            axios.get(`https://hashlist.herokuapp.com/team/${_ID}`,
             config
             ).then((res)=>{
                 this.setState({

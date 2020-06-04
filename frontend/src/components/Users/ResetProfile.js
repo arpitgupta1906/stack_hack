@@ -21,7 +21,7 @@ class ResetProfile extends Component {
         
         try{
 
-            const res=await axios.patch('/resetpassword',{
+            const res=await axios.patch('https://hashlist.herokuapp.com/resetpassword',{
                 email
             })
             if(res.data._id){

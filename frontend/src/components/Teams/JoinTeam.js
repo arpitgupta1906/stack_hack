@@ -28,7 +28,7 @@ class JoinTeam extends Component {
         };
         
 
-        axios.post(`/jointeam`,
+        axios.post(`https://hashlist.herokuapp.com/jointeam`,
         {
             name,
             invitecode: parseInt(code)

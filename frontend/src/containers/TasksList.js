@@ -32,16 +32,16 @@ class TasksList extends Component {
             })
             let url;
             if(_ID==='all' || !_ID){
-                url='/tasks?completed=false&sortBy=completed:asc'
+                url='https://hashlist.herokuapp.com/tasks?completed=false&sortBy=completed:asc'
             }
             else if(_ID==='archived'){
-                url='/tasks?completed=true&&sortBy=dueDateTime:desc'
+                url='https://hashlist.herokuapp.com/tasks?completed=true&&sortBy=dueDateTime:desc'
             }
             else if(_ID==='overdue'){
-                url='/overdue'
+                url='https://hashlist.herokuapp.com/overdue'
             }
             else{    
-            url=`/tasks?labels=${_ID}&completed=false`
+            url=`https://hashlist.herokuapp.com/tasks?labels=${_ID}&completed=false`
             }
 
             axios.get(url,

@@ -31,7 +31,7 @@ class SignUp extends Component {
 
         if(this.validateForm(this.state.errors) && password===password2 && password.length>6){
             
-            axios.post('/users/signup',{
+            axios.post('https://hashlist.herokuapp.com/users/signup',{
                 email,
                 password,
                 name

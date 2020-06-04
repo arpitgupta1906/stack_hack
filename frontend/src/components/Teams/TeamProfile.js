@@ -21,7 +21,7 @@ class TeamProfile extends Component {
              headers: { Authorization: `Bearer ${token}` }
          };
          
-         axios.get(`/team/${_ID}`,
+         axios.get(`https://hashlist.herokuapp.com/team/${_ID}`,
          config).then((res)=>{
 
             this.setState({
@@ -32,7 +32,7 @@ class TeamProfile extends Component {
              console.log(error)
          })   
 
-        axios.get(`/team/${_ID}/members`,config).
+        axios.get(`https://hashlist.herokuapp.com/team/${_ID}/members`,config).
         then((res)=>{
             this.setState({
                 members:res.data
@@ -54,7 +54,7 @@ class TeamProfile extends Component {
          };
          
  
-         axios.patch(`/team/${_ID}/updateagenda`,
+         axios.patch(`https://hashlist.herokuapp.com/team/${_ID}/updateagenda`,
          {
              agenda
          },
@@ -75,7 +75,7 @@ class TeamProfile extends Component {
          };
          
  
-         axios.patch(`/team/${_ID}/changeinvite`,
+         axios.patch(`https://hashlist.herokuapp.com/team/${_ID}/changeinvite`,
          {},
          config).then((res)=>{             
             //  console.log(res.data.invitecode)

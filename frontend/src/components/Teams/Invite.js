@@ -18,7 +18,7 @@ class Invite extends Component {
                 headers: { Authorization: `Bearer ${token}` }
             };
             
-            axios.post(`/team/${_ID}/invite`,
+            axios.post(`https://hashlist.herokuapp.com/team/${_ID}/invite`,
             {
                     email
                 },
