@@ -26,7 +26,7 @@ class AddTeamTask extends Component {
         };
         
 
-        axios.get(`/team/${_ID}`,
+        axios.get(`https://hashlist.herokuapp.com/team/${_ID}`,
         config).then((res)=>{
             
           this.setState({
@@ -57,7 +57,7 @@ class AddTeamTask extends Component {
         // console.log(_ID)
         try{
 
-            const task=await axios.post(`/team/${_ID}/task`,{
+            const task=await axios.post(`https://hashlist.herokuapp.com/team/${_ID}/task`,{
                 description,
                 notes,
                 labels,

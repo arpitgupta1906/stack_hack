@@ -25,7 +25,7 @@ class CreateTeam extends Component {
         };
         
 
-        axios.post(`/createteam`,
+        axios.post(`https://hashlist.herokuapp.com/createteam`,
         {
             name,
             agenda

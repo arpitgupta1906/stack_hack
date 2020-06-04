@@ -33,7 +33,7 @@ class Layout extends Component {
             const config = {
                 headers: { Authorization: `Bearer ${token}` }
             };
-            axios.get('/users/teams',
+            axios.get('https://hashlist.herokuapp.com/users/teams',
             config
             ).then((res)=>{
                 this.setState({
@@ -58,7 +58,7 @@ class Layout extends Component {
             headers: { Authorization: `Bearer ${token}` }
         };
         
-        axios.post(`/users/logout`,
+        axios.post(`https://hashlist.herokuapp.com/users/logout`,
         {
         },
         config
@@ -75,8 +75,14 @@ class Layout extends Component {
             window.location.reload()
         }).catch((error)=>{
             console.log(error);
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            this.props.history.push('/home');
             window.location.reload()
         })
+        localStorage.removeItem("token");
+            localStorage.removeItem("user");
+        this.props.history.push('/home');
     }
 
     clickreset=(event)=>{
@@ -85,7 +91,7 @@ class Layout extends Component {
             headers: { Authorization: `Bearer ${token}` }
         };
 
-        axios.get('/users/freshstart',
+        axios.get('https://hashlist.herokuapp.com/users/freshstart',
             config
             ).then((res)=>{
                 console.log("all tasks deleted")

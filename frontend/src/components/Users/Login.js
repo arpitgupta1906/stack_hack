@@ -11,7 +11,7 @@ class Login extends Component {
         const email=event.target.elements.email.value;
         console.log(email)
 
-        axios.post('/users/login/',{
+        axios.post('https://hashlist.herokuapp.com/users/login/',{
             email: email,
             password: password
         }).then(res=>{

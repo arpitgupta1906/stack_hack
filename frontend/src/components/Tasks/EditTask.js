@@ -22,7 +22,7 @@ class EditTask extends Component {
         };
         if(token){
 
-            axios.get(`/tasks/${_ID}`,
+            axios.get(`https://hashlist.herokuapp.com/tasks/${_ID}`,
             config
             ).then((res)=>{
                 this.setState({
@@ -67,7 +67,7 @@ class EditTask extends Component {
             headers: { Authorization: `Bearer ${token}` }
         };
 
-        axios.patch(`/tasks/${_ID}`,
+        axios.patch(`https://hashlist.herokuapp.com/tasks/${_ID}`,
         data,
         config).then((res)=>{
             // this.props.history.push('/')
@@ -91,7 +91,7 @@ class EditTask extends Component {
             const config = {
                 headers: { Authorization: `Bearer ${token}` }
             };            
-            axios.get(`/team/${_ID}`,
+            axios.get(`https://hashlist.herokuapp.com/team/${_ID}`,
             config
             ).then((res)=>{
                 task.teamname= res.data.name;

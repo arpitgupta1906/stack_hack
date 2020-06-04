@@ -26,7 +26,7 @@ class TeamBoard extends Component {
         }
         if(token){
 
-            axios.get(`/team/${_ID}/tasks`,
+            axios.get(`https://hashlist.herokuapp.com/team/${_ID}/tasks`,
             config
             ).then((res)=>{
                 this.setState({
@@ -37,7 +37,7 @@ class TeamBoard extends Component {
                 console.log(error)
             })
                      
-            axios.get(`/team/${_ID}`,
+            axios.get(`https://hashlist.herokuapp.com/team/${_ID}`,
             config
             ).then((res)=>{
                 this.setState({
@@ -58,7 +58,7 @@ class TeamBoard extends Component {
         };
         if(token){
 
-            axios.get(`/team/${_ID}/leaveteam`,
+            axios.get(`https://hashlist.herokuapp.com/team/${_ID}/leaveteam`,
             config
             ).then((res)=>{
             this.props.history.push('/tasks/all')

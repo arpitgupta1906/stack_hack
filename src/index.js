@@ -19,9 +19,19 @@ app.use(express.json());
 //     app.use(express.static('frontend/build'));
 // }
 
+
 app.use(userRouter)
 app.use(taskRouter)
 app.use(teamRouter)
+
+app.get('/',async (req,res)=>{
+
+    const d={
+        welcome:"hello"
+    }
+
+    res.send(d)
+})
 
 require('./middleware/checkDueDate')
 

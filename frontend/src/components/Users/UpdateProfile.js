@@ -47,7 +47,7 @@ class UpdateProfile extends Component {
             const config = {
                 headers: { Authorization: `Bearer ${token}` }
             };
-            axios.patch('/users/update/',
+            axios.patch('https://hashlist.herokuapp.com/users/update/',
             data,
             config
             ).then((res)=>{

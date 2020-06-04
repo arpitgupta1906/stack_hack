@@ -34,7 +34,7 @@ class AddTask extends Component {
 
         try{
 
-            const tasks=await axios.post('/tasks/add',{
+            const tasks=await axios.post('https://hashlist.herokuapp.com/tasks/add',{
                 description,
                 notes,
                 labels,
