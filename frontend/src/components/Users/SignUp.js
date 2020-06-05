@@ -83,7 +83,7 @@ class SignUp extends Component {
     render() {
         let errors=this.state;
     return (
-    <div className='login fitting'>
+    <div className='login fitting better-ui'>
         <form onSubmit={this.handleSubmit}>
         <div class="form-group">
             <label for="name">Username:</label>

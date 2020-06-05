@@ -30,7 +30,7 @@ class Login extends Component {
 
     render() {
         return (
-            <div className='login fitting'>
+            <div className='login fitting better-ui'>
                  <form onSubmit={this.handleSubmit}>
             <div class="form-group">
                 <label for="email">Email address:</label>

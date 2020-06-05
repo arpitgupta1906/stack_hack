@@ -1,7 +1,7 @@
 .login{
     align-items: center;
     /* margin: auto; */
-    margin-top: 10rem;
+    margin-top: 70px;
     margin-left: 10rem;
     width: 25rem;
 }
@@ -26,3 +26,12 @@ a{
 .fitting{
     margin-top: auto;
 }
+
+
+@media screen and (max-width: 1000px) {
+    .better-ui { width:100%;
+         margin-top: 70px;
+         margin-left: -100px;}
+    
+}
+
