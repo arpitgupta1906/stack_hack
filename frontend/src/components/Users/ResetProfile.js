@@ -44,7 +44,7 @@ class ResetProfile extends Component {
 
     render() {
         return (
-            <div className='login fitting'>
+            <div className='login fitting better-ui'>
         <form onSubmit={this.handleSubmit}>
             <h4>OTP will be sent to your email</h4>
             <br />
