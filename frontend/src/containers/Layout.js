@@ -116,7 +116,12 @@ class Layout extends Component {
                 <nav className="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
                 <ul className="navbar-nav">
                     <li className="nav-item active">
+                    {this.state.isAuthenticated?
+                    
                     <a className="navbar-brand" href="/tasks/all">ToDoIst</a>
+                    :
+                    <a className="navbar-brand" href="#">ToDoIst</a>
+                    }
                     </li>
                     <li className="nav-item">
                     <a className="navbar-brand" href="#">                  </a>

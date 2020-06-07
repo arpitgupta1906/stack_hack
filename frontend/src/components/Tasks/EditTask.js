@@ -59,7 +59,7 @@ class EditTask extends Component {
         data['description']=description;
         data['notes']=notes;
         data['labels']=labels;
-        data['dueDateTime']=duedatetime.toUTCString();
+        data['dueDateTime']=new Date(duedatetime).toUTCString();
         data['percentCompleted']=percentCompleted;
 
         let token=localStorage.getItem('token');
@@ -70,7 +70,7 @@ class EditTask extends Component {
         axios.patch(`https://hashlist.herokuapp.com/tasks/${_ID}`,
         data,
         config).then((res)=>{
-            // this.props.history.push('/')
+            this.props.history.push('/tasks/all')
             console.log('done')
             this.forceUpdate();
         }).catch((error)=>{

@@ -9,7 +9,8 @@ class TasksList extends Component {
         super(props);
         this.state={
             tasks:[],
-            isAuthenticated: false
+            isAuthenticated: false,
+            isLoading: false
         }
     }
 
@@ -57,6 +58,9 @@ class TasksList extends Component {
             })
 
         }
+        this.setState({
+            isLoading: true
+        })
     }
     
     render() {
@@ -74,16 +78,24 @@ class TasksList extends Component {
             <div>
             {this.state.isAuthenticated?
             <span>
+            
+            {this.state.isLoading?
+                <span>
+                    <button type="button" class="btn btn-primary add-task-main">
+                        <a className="task-a" href="/addtask">Add Task</a>
+                    </button>
+                    {tasklist.length>0?
+                    <ul className="list-group">
+                        {tasklist}
+                    </ul>
 
-             <button type="button" class="btn btn-primary add-task-main">
-                <a className="task-a" href="/addtask">Add Task</a>
-            </button>
-            {tasklist.length>0?
-            <ul className="list-group">
-                {tasklist}
-            </ul>
-            :<h4 class="notask"> No Tasks Yet</h4>
+                    :<h4 class="notask"> No Tasks Yet</h4>
+                    }
+                </span>
+            :
+             <div class="spinner-border"></div>
             }
+
             </span>
             :
             <div> Unauthorized Access</div>
