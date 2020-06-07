@@ -22,10 +22,11 @@ class AddTask extends Component {
         const description=event.target.description.value;
         const notes=event.target.notes.value;
         const labels=event.target.labels.value;
-        const duedatetime=event.target.duedatetime.value;
+        var duedatetime=event.target.duedatetime.value;
         const percentCompleted=event.target.percentCompleted.value;
 
         console.log(duedatetime)
+        duedatetime=new Date(duedatetime).toISOString();
 
         let token=localStorage.getItem('token');
         const config = {
@@ -51,7 +52,7 @@ class AddTask extends Component {
             // console.log(e);
         }
 
-        // console.log(percentCompleted);
+        // console.log(duedatetime);
     }
 
     render() {

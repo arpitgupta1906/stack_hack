@@ -103,6 +103,7 @@ class SingleTask extends Component {
 
     render() {
         let {task}=this.props
+        // console.log(task.dueDateTime,task.description)
         task.dueDateTime=new Date(task.dueDateTime)
 
         return (

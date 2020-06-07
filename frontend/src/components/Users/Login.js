@@ -23,7 +23,10 @@ class Login extends Component {
             window.location.reload()
             // console.log(localStorage.getItem('token'))
         })
-        .catch(error=>console.error(error));
+        .catch((error)=>{
+            alert('Wrong Password or username')
+            console.error(error)
+        });
 
         
     }

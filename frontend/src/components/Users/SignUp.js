@@ -41,6 +41,8 @@ class SignUp extends Component {
                 this.props.history.push('/tasks/all');
                 window.location.reload()
                 // console.log(res.data)
+            }).catch((e)=>{
+                alert('Invalid form Input')
             })
         }
         else{
