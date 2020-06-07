@@ -110,7 +110,7 @@ class SingleTask extends Component {
             <div className="singletask" id="stask">
 
             <li className="list-group-item">
-                <p> <span className="test1"><Moment format="D-ddd MMMM-YY HH:mm a">{task.dueDateTime}</Moment></span>
+                <p> <span className="test1"><Moment format="D-ddd MMMM-YY hh:mm a">{task.dueDateTime}</Moment></span>
                  <span className="test2">
                  <a href={`/tasks/${task.labels}`}>
                  {task.labels}

@@ -45,13 +45,15 @@ class AddTeamTask extends Component {
         const description=event.target.description.value;
         const notes=event.target.notes.value;
         const labels=event.target.labels.value;
-        const duedatetime=event.target.duedatetime.value;
+        var duedatetime=event.target.duedatetime.value;
         const percentCompleted=event.target.percentCompleted.value;
 
         let token=localStorage.getItem('token');
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
+
+        duedatetime=new Date(duedatetime).toUTCString()
 
         const _ID=this.props.match.params.ID;
         // console.log(_ID)
