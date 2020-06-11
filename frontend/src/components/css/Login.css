@@ -27,6 +27,10 @@ a{
     margin-top: auto;
 }
 
+.x-forgot{
+    color: rgb(255, 138, 4);
+}
+
 
 @media screen and (max-width: 1000px) {
     .better-ui { width:100%;
@@ -34,4 +38,6 @@ a{
          margin-left: -100px;}
     
 }
+
+
 

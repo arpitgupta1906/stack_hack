@@ -34,6 +34,9 @@ class Login extends Component {
     render() {
         return (
             <div className='login fitting better-ui'>
+            <a className="pointers x-forgot" href="/forgotpassword"> Forgot Password?</a>
+            <a className="pointers x-forgot" href="/signup"> Sign Up?</a>
+            
                  <form onSubmit={this.handleSubmit}>
             <div class="form-group">
                 <label for="email">Email address:</label>
@@ -42,14 +45,14 @@ class Login extends Component {
             <div class="form-group">
                 <label for="pwd">Password:</label>
                 <input name='password' type="password" class="form-control" placeholder="Enter password" id="pwd" />
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Login</button>
             </div>
             </form>
-            {/* <br />  */}
-            {/* <div className="form-group"> */}
-            <a className="pointers" href="/signup"> Sign Up?</a>
-            <a className="pointers" href="/forgotpassword"> Forgot Password?</a>
-            {/* </div> */}
+            {/* <br />
+            <br />
+            <br />
+            <br /> */}
+            
             
             </div>
         );
