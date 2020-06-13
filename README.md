@@ -1,7 +1,7 @@
 # Todoist
 
-A web app to manage all your tasks and also includes features to collaborate in teams.I made this app as a part of Stack-Hack hackathon conducted by hackerearth.
-This project is made over MERN stack.
+A web app to manage all your tasks and also includes features to collaborate in teams.I made this app as a part of Stack-Hack hackathon conducted by hackerearth at https://www.hackerearth.com/challenges/hackathon/stackhack-v1/.
+This project is based on MERN stack.
 
 ## Getting Started
 
