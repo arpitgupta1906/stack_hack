@@ -26,11 +26,14 @@ const nodemailer=require('nodemailer')
 //     }
 //   });
 
+
+
+
 const authorization={
     service: 'gmail',
     auth: {
-       user: 'gupta.arpit5694@gmail.com',
-       pass: '1Wrld@PC'
+       user: '##########@gmail.com',  //your email address
+       pass: '**********'                // your password
     }
 }
 
